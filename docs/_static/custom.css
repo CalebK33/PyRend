@@ -1,0 +1,9 @@
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sidebar-brand img {
+    max-height: 28px;
+}
