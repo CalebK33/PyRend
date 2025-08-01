@@ -1,21 +1,27 @@
-PyRend Documentation
-====================
+Welcome to PyRends's Documentation
+======================================
 
-Welcome to the PyRend documentation. This page will guide you through the main features and how to use them.
+.. toctree::
+   :caption: Navigation
+   :maxdepth: 2
+   :hidden:
 
-.. note::
+   overlay
+   sound
+   files
+   input
 
-   THIS DOCUMENTATION IS CURRENTLY A SKELETON. IT WILL BE PROPERLY EDITED SOON.
+Overview
+--------
+
+Welcome to the documentation.
+
+Contents
+--------
 
 .. contents::
    :local:
    :depth: 2
-   :backlinks: none
-
-Overview
-========
-
-PyRend allows you to create audio/video overlays, automate keyboard input, and manage windows/files.
 
 Getting Started
 ===============
