@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.abspath(".."))
 
 project = "pyrend"
 author = "Caleb Keenan"
-release = "0.1.0"
+release = "0.1.3"
 
 extensions = [
     "sphinx.ext.autodoc",
