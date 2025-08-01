@@ -1,4 +1,4 @@
-Welcome to pyrend's documentation!
+Welcome to PyRends's documentation!
 ===================================
 
 .. toctree::
