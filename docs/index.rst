@@ -53,7 +53,7 @@ Features
 Getting Started
 ===============
 
-This section explains how to get started with PyRend.
+This section explains how to install and begin using PyRend. 
 
 Installation
 ------------
@@ -64,3 +64,27 @@ Use pip to install PyRend:
 
     pip install pyrend
 
+To check PyRend was successfully installed, run
+
+.. code-block:: bash
+
+   pip show pyrend
+
+If it shows PyRend is installed, you have successfully installed PyRend and can begin... PyRending...?
+
+.. note::
+   PyRends dependencies are:
+   - librosa
+   - moviepy 
+   - mss 
+   - numpy 
+   - opencv-python 
+   - Pillow 
+   - pygetwindow 
+   - PyQt5 
+   - requests 
+   - sounddevice 
+   - soundfile
+
+PyRend Basics & Update Loop
+---------------------------
