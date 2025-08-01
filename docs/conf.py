@@ -17,4 +17,4 @@ exclude_patterns = []
 
 html_theme = "furo"
 html_static_path = ["_static"]
-html_favicon = '_static/favicon.ico'
+html_favicon = '_static/icon.ico'
