@@ -19,7 +19,7 @@ PyRend is a multipurpose Python library designed for easy control and management
 PyRend also comes with a multitude of other features that simplify advanced modules such as ctypes to utelize global keypresses, play or record sound, control and resize open applications and more.
 
 You can view PyRend's PyPi page with version history `here. <https://pypi.org/project/pyrend>`_
-You can view PyRend's source code `here. <https://github.com/CalebK33/PyRend>`
+You can view PyRend's source code `here. <https://github.com/CalebK33/PyRend>`_
 
 .. contents::
    :local:
