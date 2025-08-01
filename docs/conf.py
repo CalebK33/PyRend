@@ -3,7 +3,7 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 
 project = "pyrend"
-html_title = "PyRend 0.1.3 Documentation"
+html_title = "PyRend 0.1.31 Documentation"
 html_logo = "_static/favicon.png"
 author = "Caleb Keenan"
 release = "0.1.3"
