@@ -7,9 +7,6 @@ Welcome to the PyRend documentation. This page will guide you through the main f
 
    THIS DOCUMENTATION IS CURRENTLY A SKELETON. IT WILL BE PROPERLY EDITED SOON.
 
-Contents
---------
-
 .. contents::
    :local:
    :depth: 2
