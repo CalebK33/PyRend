@@ -16,9 +16,6 @@ Overview
 
 Welcome to the documentation.
 
-Contents
---------
-
 .. contents::
    :local:
    :depth: 2
