@@ -14,7 +14,6 @@ __all__ = [
     "files"
 ]
 
-
 def init():
     overlay.init()
 def start(update_loop):
@@ -23,41 +22,40 @@ def close():
     overlay.close()
 
 def pixel_to_rel(x=None, y=None):
-    if x and y:
-        rect = overlay._overlay.rect()
-        center_x = rect.center().x()
-        center_y = rect.center().y()
+    rect = overlay._overlay.rect()
+    center_x = rect.center().x()
+    center_y = rect.center().y()
+
+    if x is not None and y is not None:
         rel_x = (x - center_x) / (rect.width() / 2)
         rel_y = -(y - center_y) / (rect.height() / 2)
         return (rel_x, rel_y)
-    elif y:
-        rect = overlay._overlay.rect()
-        center_y = rect.center().y()
+
+    elif y is not None:
         rel_y = -(y - center_y) / (rect.height() / 2)
         return rel_y
-    elif x:
-        rect = overlay._overlay.rect()
-        center_x = rect.center().x()
+
+    elif x is not None:
         rel_x = (x - center_x) / (rect.width() / 2)
-        return (rel_x)
+        return rel_x
+
 def p2r(x=None, y=None):
-    if x and y:
-        rect = overlay._overlay.rect()
-        center_x = rect.center().x()
-        center_y = rect.center().y()
+    rect = overlay._overlay.rect()
+    center_x = rect.center().x()
+    center_y = rect.center().y()
+
+    if x is not None and y is not None:
         rel_x = (x - center_x) / (rect.width() / 2)
         rel_y = -(y - center_y) / (rect.height() / 2)
         return (rel_x, rel_y)
-    elif y:
-        rect = overlay._overlay.rect()
-        center_y = rect.center().y()
+
+    elif y is not None:
         rel_y = -(y - center_y) / (rect.height() / 2)
         return rel_y
-    elif x:
-        rect = overlay._overlay.rect()
-        center_x = rect.center().x()
+
+    elif x is not None:
         rel_x = (x - center_x) / (rect.width() / 2)
-        return (rel_x)
+        return rel_x
 
 def rel_to_pixel(rel_x=None, rel_y=None):
     rect = overlay._overlay.rect()
@@ -78,6 +76,7 @@ def rel_to_pixel(rel_x=None, rel_y=None):
         return int(y)
 
     return None
+
 def r2p(rel_x=None, rel_y=None):
     rect = overlay._overlay.rect()
     center_x = rect.center().x()
