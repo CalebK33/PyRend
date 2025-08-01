@@ -29,7 +29,7 @@ You can view PyRend's source code `here. <https://github.com/CalebK33/PyRend>`_
    :depth: 2
 
 Features
---------
+~~~~~~~~
 - Invisible graphical overlays
    - Simple to use API for drawing shapes and text through objects
    - Image and video support
@@ -51,12 +51,12 @@ Features
    - Return open applications as manipulatable objects
 
 Getting Started
-===============
+---------------
 
 This section explains how to install and begin using PyRend. 
 
 Installation
-------------
+~~~~~~~~~~~~
 
 Use pip to install PyRend:
 
@@ -64,7 +64,7 @@ Use pip to install PyRend:
 
     pip install pyrend
 
-To check PyRend was successfully installed, run
+To check PyRend was successfully installed, run:
 
 .. code-block:: bash
 
@@ -73,18 +73,15 @@ To check PyRend was successfully installed, run
 If it shows PyRend is installed, you have successfully installed PyRend and can begin... PyRending...?
 
 .. note::
-   PyRends dependencies are:
-   - librosa
-   - moviepy 
-   - mss 
-   - numpy 
-   - opencv-python 
-   - Pillow 
-   - pygetwindow 
-   - PyQt5 
-   - requests 
-   - sounddevice 
-   - soundfile
+   PyRends dependencies are: librosa, moviepy, mss, numpy, opencv-python, Pillow, pygetwindow, PyQt5, requests, sounddevice, soundfile
 
 PyRend Basics & Update Loop
 ---------------------------
+
+The core feature of PyRend is it's overlay and update loop. PyRend's update loop allows the program and overlay to continually until closed. The most simple way to start this is with:
+
+.. code-block:: python
+
+   pyrend.start()
+
+This will 
