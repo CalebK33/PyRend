@@ -18,4 +18,5 @@ exclude_patterns = []
 
 html_theme = "furo"
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 html_favicon = '_static/favicon.png'
