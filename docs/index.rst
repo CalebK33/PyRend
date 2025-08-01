@@ -24,12 +24,8 @@ You can view PyRend's PyPi page with version history `here. <https://pypi.org/pr
 
 You can view PyRend's source code `here. <https://github.com/CalebK33/PyRend>`_
 
-.. contents::
-   :local:
-   :depth: 2
-
 Features
-~~~~~~~~
+--------
 - Invisible graphical overlays
    - Simple to use API for drawing shapes and text through objects
    - Image and video support
@@ -51,12 +47,12 @@ Features
    - Return open applications as manipulatable objects
 
 Getting Started
----------------
+===============
 
 This section explains how to install and begin using PyRend. 
 
 Installation
-~~~~~~~~~~~~
+------------
 
 Use pip to install PyRend:
 
