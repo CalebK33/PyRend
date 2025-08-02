@@ -80,20 +80,20 @@ The core features of PyRend are its overlay and update loop. PyRend's update loo
 
    pyrend.start()
 
-This will start the loop inside of PyRend and the program will continue to run. It can only be closed by quitting the terminal. How to fix this? Add a function as the parameter for pyrend.start() This will set that function as the update function to be called every loop (So 60 times a second at 60fps). Setting an update loop, though not nessasairy, is *highly* reccomended for all PyRend programs. using this, a basic starter program should look like this:
+This will start the loop inside of PyRend and the program will continue to run. It can only be closed by quitting the terminal. How to fix this? Add a function as the parameter for pyrend.start() This will set that function as the update function to be called every loop (So 60 times a second at 60fps). Setting an update loop, though not nessasairy, is **highly** reccomended for all PyRend programs. using this, a basic starter program should look like this:
 
 .. code-block:: python
 
    import pyrend
 
-   def myUpdateLoop()
+   def myUpdateLoop():
       pass
 
    pyrend.start(myUpdateLoop)
 
 This is a lot better as now you can put anything in the update loop, however the program can still only be ended from quitting the terminal, as the PyRend overlay does not show up as an application, in the taskbar or as a window. You can close the PyRend application using:
 
-..code-block:: python
+.. code-block:: python
 
    pyrend.close()
 
@@ -109,7 +109,7 @@ This is using PyRends input module, which will be explained in more deatil later
 
    import pyrend
 
-   def myUpdateLoop()
+   def myUpdateLoop():
       if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
          pyrend.close()
 
