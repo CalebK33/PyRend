@@ -197,6 +197,6 @@ All functions that involve colour in PyRend use RGB codes, rather than hex codes
 Output:
 
 .. code-block:: text
+
    (58, 242, 4)
 
-Done.
