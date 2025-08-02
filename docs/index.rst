@@ -177,7 +177,7 @@ All of these functions accept two paramters, x and y. If you feed both it will r
 
 Outputs:
 
-.. literal-block::
+..code bash::
 
    (1247, 618)    -> tuple
    1343           -> int
