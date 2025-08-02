@@ -12,6 +12,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
 ]
+pygments_style = "monokai"     
+pygments_dark_style = "monokai"
 
 templates_path = ["_templates"]
 exclude_patterns = []
