@@ -4,7 +4,6 @@ Welcome to PyRend's Documentation
 .. toctree::
    :caption: Navigation
    :maxdepth: 2
-   :hidden:
 
    overlay
    input
