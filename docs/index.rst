@@ -148,7 +148,41 @@ Otherwise, continue on this page to check out the other module level functions, 
 
 Base Module Functions
 =====================
+Pixel vs Relative Coordinates
+-----------------------------
 
 .. code:: python
 
-   pyrend.rel_to_pixel
+   pyrend.rel_to_pixel(x, y) -> tuple
+   pyrend.r2p(x, y)
+
+Both of the above functions do the same thing, r2p is just a shorthand version of rel_to_pixel. These functions convert relative coordinates to pixel coordinates. 
+
+**Relative coordinates** hold values from -1 to 1, from the left to right or bottom to top of the screen. This makes it easy to center things as (0, 0) is always the center, no matter the screen size. 
+
+**Pixel coordinates** start at (0, 0) in the top left and measure the pixels across the screen. All PyRend functions that use screen coordinates use pixel coordinates, making the functions for converting relative coordinates to pixels extremely useful. 
+
+The functions also have reverse calculations:
+
+.. code:: python
+
+   pyrend.pixel_to_rel(x, y)
+   pyrend.p2r(x, y)
+
+All of these functions accept two paramters, x and y. If you feed both it will return a tuple, but if you only give one parameter a single integer/float will be returned. For example:
+
+.. code:: python
+   print(pyrend.r2p(0.3, -0.2))
+   print(pyrend.r2p(0.4))
+Outputs:
+.. literal-block::
+   (1247, 618)    -> tuple
+   1343           -> int
+   
+Hex vs RGB codes
+----------------
+
+All functions that involve colour in PyRend use RGB codes, rather than hex codes. You can use *pyrend.hex()* to convert colour hex codes to RGB tuples:
+
+.. code:: python
+   pyrend.hex("#3AF204")       ->    (58, 242, 4)
