@@ -190,4 +190,8 @@ All functions that involve colour in PyRend use RGB codes, rather than hex codes
 
 .. code-block:: python
 
-   pyrend.hex("#3AF204")       ->    (58, 242, 4)
+   rgb = pyrend.hex("#3AF204")
+   print(rgb)
+Output:
+.. code-block:: python
+   (58, 242, 4)
