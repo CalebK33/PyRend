@@ -33,7 +33,7 @@ You can view PyRend’s source code `here <https://github.com/CalebK33/PyRend>`_
 Features
 --------
 
-- :doc:`**Invisible graphical overlays**<overlay>`
+- **:doc:`Invisible graphical overlays<overlay>`**
    - Easy-to-use API for drawing shapes, images, and text
    - Image and video support
    - Click detection
