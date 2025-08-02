@@ -193,6 +193,7 @@ All functions that involve colour in PyRend use RGB codes, rather than hex codes
 
    rgb = pyrend.hex("#3AF204")
    print(rgb)
+
 Output:
 
 .. code-block:: python
