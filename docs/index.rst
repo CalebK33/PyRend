@@ -7,9 +7,11 @@ Welcome to PyRend's Documentation
    :hidden:
 
    overlay
+   input
    sound
    files
-   input
+   examples
+   
 
 Overview
 --------
