@@ -1,5 +1,5 @@
-Welcome to PyRends's Documentation
-======================================
+Welcome to PyRend's Documentation
+=================================
 
 .. toctree::
    :caption: Navigation
@@ -14,107 +14,125 @@ Welcome to PyRends's Documentation
 Overview
 --------
 
-PyRend is a multipurpose Python library designed for easy control and management windows devices. PyRend's main utility is it's ability to draw invisible overlays onto the screen without a visible application. This overlay is dynamic and can be easily altered live, and is visible on top of all bordered or borderless windowed applications. The PyRend overlay comes with various settings such as specifying click through, and simple functions make it easy to draw shapes, images, text or even videos to the overlay. 
+PyRend is a multipurpose Python library designed for easy control and management of Windows devices. Its main utility is its ability to draw invisible overlays onto the screen without a visible application window. These overlays are dynamic, can be altered live, and appear on top of all bordered or borderless windowed applications.
 
+The PyRend overlay includes various settings such as click-through functionality, and simple functions make it easy to draw shapes, images, text, or even videos to the screen.
 
-PyRend also comes with a multitude of other features that simplify advanced modules such as ctypes to utelize global keypresses, play or record sound, control and resize open applications and more.
+PyRend also includes a range of features that simplify advanced modules like `ctypes` to:
+- Detect global keypresses
+- Play or record sound
+- Control and resize open applications
+- Perform system-level tasks such as taking screenshots or managing files
 
+You can view PyRend’s PyPI page with version history `here <https://pypi.org/project/pyrend>`_.
 
-You can view PyRend's PyPi page with version history `here. <https://pypi.org/project/pyrend>`_
-
-You can view PyRend's source code `here. <https://github.com/CalebK33/PyRend>`_
+You can view PyRend’s source code `here <https://github.com/CalebK33/PyRend>`_.
 
 Features
 --------
-- Invisible graphical overlays
-   - Simple to use API for drawing shapes and text through objects
+
+- **Invisible graphical overlays**
+   - Easy-to-use API for drawing shapes, images, and text
    - Image and video support
    - Click detection
-   - Dynamic interface
-- Playing sound and recording audio input
-   - Play sound from ogg, mp3 or wav
-   - Record audio input from user microphone
-   - Pitch shift audio and volume
-- Manage keyboard and mouse input
+   - Dynamic, real-time interface updates
+
+- **Audio playback and recording**
+   - Play audio from OGG, MP3, or WAV
+   - Record audio from the user’s microphone
+   - Pitch shifting and volume control
+
+- **Keyboard and mouse input management**
    - Detect global keypresses
-   - Simulate user input to press keys
+   - Simulate user input (keyboard and mouse)
    - Detect and manipulate mouse movement and clicks
-- Manipulate open applications and files
-   - Resize, maximize, minimize or move open windows
+
+- **Window and file manipulation**
+   - Resize, maximize, minimize, or move open windows
    - Run applications in background threads
    - Capture and save screenshots
-   - Download URLs
+   - Download files from URLs
    - Return open applications as manipulatable objects
 
 Getting Started
 ===============
 
-This section explains how to install and begin using PyRend. 
+This section explains how to install and begin using PyRend.
 
 Installation
 ------------
 
-Use pip to install PyRend:
+Install PyRend using pip:
 
 .. code-block:: bash
 
     pip install pyrend
 
-To check PyRend was successfully installed, run:
+To confirm PyRend was installed successfully:
 
 .. code-block:: bash
 
-   pip show pyrend
+    pip show pyrend
 
-If it shows PyRend is installed, you have successfully installed PyRend and can begin... PyRending...?
+If the command returns PyRend’s details, the installation was successful.
 
 .. note::
-   PyRends dependencies are: librosa, moviepy, mss, numpy, opencv-python, Pillow, pygetwindow, PyQt5, requests, sounddevice, soundfile
+   PyRend's dependencies include: librosa, moviepy, mss, numpy, opencv-python, Pillow, pygetwindow, PyQt5, requests, sounddevice, and soundfile.
 
 PyRend Basics & Update Loop
 ---------------------------
 
-The core features of PyRend are its overlay and update loop. PyRend's update loop allows the program and overlay to continually until closed. The most simple way to start this is with:
+The core of PyRend is its overlay system and update loop. This loop allows the overlay and program to run continuously until manually closed.
+
+To start the loop:
 
 .. code-block:: python
 
-   pyrend.start()
+    pyrend.start()
 
-This will start the loop inside of PyRend and the program will continue to run. It can only be closed by quitting the terminal. How to fix this? Add a function as the parameter for pyrend.start() This will set that function as the update function to be called every loop (So 60 times a second at 60fps). Setting an update loop, though not nessasairy, is *highly* reccomended for all PyRend programs. using this, a basic starter program should look like this:
+This begins the internal PyRend loop, and the program will continue running. However, at this point, it can only be closed by quitting the terminal.
 
-.. code-block:: python
+To improve this, you can pass a function into `pyrend.start()`. This function will be called every frame (typically 60 times per second). Using an update loop is *highly* recommended in most PyRend programs.
 
-   import pyrend
-
-   def myUpdateLoop():
-      pass
-
-   pyrend.start(myUpdateLoop)
-
-This is a lot better as now you can put anything in the update loop, however the program can still only be ended from quitting the terminal, as the PyRend overlay does not show up as an application, in the taskbar or as a window. You can close the PyRend application using:
+Example:
 
 .. code-block:: python
 
-   pyrend.close()
+    import pyrend
 
-This will stop the update loop, delete the overlay and continue the program from whereever **pyrend.start()** was called, which usually results in the program finishing. Something I would highly reccomend is to make a keybind to close the overlay, using:
+    def my_update_loop():
+        pass
+
+    pyrend.start(my_update_loop)
+
+This gives you control over what happens each frame. However, the program can still only be ended by closing the terminal, since PyRend does not create a visible application window or taskbar icon.
+
+To close PyRend programmatically:
 
 .. code-block:: python
 
-   pyrend.input.is_key_down(key) -> bool
+    pyrend.close()
 
-This is using PyRends input module, which will be explained in more deatil later in the documentation. Describing it simply, pass the function a key in strong form, and it will return True or False dependind on whether the key is held down. Using this we can finish our basic PyRend skeleton by adding a way to quit the program:
+This stops the update loop, deletes the overlay, and resumes execution after the `pyrend.start()` call—usually causing the program to exit.
+
+A useful approach is binding a key or key combination to exit the program. PyRend provides an input module to check global keypresses:
 
 .. code-block:: python
 
-   import pyrend
+    pyrend.input.is_key_down(key) -> bool
 
-   def myUpdateLoop():
-      if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
-         pyrend.close()
+This function takes a key name (as a string) and returns `True` if the key is currently held down. For example:
 
-   pyrend.start(myUpdateLoop)
+.. code-block:: python
 
-Obviously you can bind any keys you want, in that scenario I used `Alt + Q`. 
+    import pyrend
 
-And there you go, you have a working skeleton PyRend script!  
+    def my_update_loop():
+        if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+            pyrend.close()
+
+    pyrend.start(my_update_loop)
+
+In this example, pressing **Alt + Q** will exit the program. You can bind any key combination you prefer.
+
+With that, you now have a complete skeleton for a functional PyRend script!
