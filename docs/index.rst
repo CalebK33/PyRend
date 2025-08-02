@@ -151,7 +151,7 @@ Base Module Functions
 Pixel vs Relative Coordinates
 -----------------------------
 
-.. code:: python
+.. code-block:: python
 
    pyrend.rel_to_pixel(x, y) -> tuple
    pyrend.r2p(x, y)
@@ -164,20 +164,20 @@ Both of the above functions do the same thing, r2p is just a shorthand version o
 
 The functions also have reverse calculations:
 
-.. code:: python
+.. code-block:: python
 
    pyrend.pixel_to_rel(x, y)
    pyrend.p2r(x, y)
 
 All of these functions accept two paramters, x and y. If you feed both it will return a tuple, but if you only give one parameter a single integer/float will be returned. For example:
 
-.. code:: python
+.. code-block:: python
    print(pyrend.r2p(0.3, -0.2))
    print(pyrend.r2p(0.4))
 
 Outputs:
 
-..code:: bash
+..code-block:: bash
 
    (1247, 618)    -> tuple
    1343           -> int
@@ -187,6 +187,6 @@ Hex vs RGB codes
 
 All functions that involve colour in PyRend use RGB codes, rather than hex codes. You can use *pyrend.hex()* to convert colour hex codes to RGB tuples:
 
-.. code:: python
+.. code-block:: python
 
    pyrend.hex("#3AF204")       ->    (58, 242, 4)
