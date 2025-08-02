@@ -198,3 +198,5 @@ Output:
 
 .. code-block:: python
    (58, 242, 4)
+
+Done.
