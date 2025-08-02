@@ -152,4 +152,3 @@ Base Module Functions
 .. code:: python
 
    pyrend.rel_to_pixel
-----------------------
