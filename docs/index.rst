@@ -33,23 +33,23 @@ You can view PyRend’s source code `here <https://github.com/CalebK33/PyRend>`_
 Features
 --------
 
-- **:doc:`Invisible graphical overlays<overlay>`**
+- :doc:`Invisible graphical overlays<overlay>`
    - Easy-to-use API for drawing shapes, images, and text
    - Image and video support
    - Click detection
    - Dynamic, real-time interface updates
 
-- :doc:`**Audio playback and recording**<sound>`
+- :doc:`Audio playback and recording<sound>`
    - Play audio from OGG, MP3, or WAV
    - Record audio from the user’s microphone
    - Pitch shifting and volume control
 
-- :doc:`****Keyboard and mouse input management****<input>`
+- :doc:`Keyboard and mouse input management<input>`
    - Detect global keypresses
    - Simulate user input (keyboard and mouse)
    - Detect and manipulate mouse movement and clicks
 
-- :doc:`**Window and file manipulation**<files>`
+- :doc:`Window and file manipulation<files>`
    - Resize, maximize, minimize, or move open windows
    - Run applications in background threads
    - Capture and save screenshots
