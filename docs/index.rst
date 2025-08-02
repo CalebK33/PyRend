@@ -135,4 +135,21 @@ This function takes a key name (as a string) and returns `True` if the key is cu
 
 In this example, pressing **Alt + Q** will exit the program. You can bind any key combination you prefer.
 
-With that, you now have a complete skeleton for a functional PyRend script!
+.. warning::
+   Sometimes calling certain overlay functions first will cause the error:
+   
+   **AttributeError: 'NoneType' object has no attribute...**
+
+   This issue is caused by trying to access the overlay object before it is created. To fix this, call *pyrend.init()* at the top of your script
+
+With that, you now have a complete skeleton for a functional PyRend script! Now you can begin to draw items onto the screen. To learn how to manage the overlay and create items, view the :doc:`overlay documentation.<overlay>` 
+
+Otherwise, continue on this page to check out the other module level functions, or view the :doc:`sound<sound>`, :doc:`input<input>` or :doc:`files<files>` submodule documentation.
+
+Base Module Functions
+=====================
+
+.. code:: python
+
+   pyrend.rel_to_pixel
+----------------------
