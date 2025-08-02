@@ -174,8 +174,11 @@ All of these functions accept two paramters, x and y. If you feed both it will r
 .. code:: python
    print(pyrend.r2p(0.3, -0.2))
    print(pyrend.r2p(0.4))
+
 Outputs:
+
 .. literal-block::
+
    (1247, 618)    -> tuple
    1343           -> int
    
@@ -185,4 +188,5 @@ Hex vs RGB codes
 All functions that involve colour in PyRend use RGB codes, rather than hex codes. You can use *pyrend.hex()* to convert colour hex codes to RGB tuples:
 
 .. code:: python
+
    pyrend.hex("#3AF204")       ->    (58, 242, 4)
