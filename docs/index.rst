@@ -172,6 +172,7 @@ The functions also have reverse calculations:
 All of these functions accept two paramters, x and y. If you feed both it will return a tuple, but if you only give one parameter a single integer/float will be returned. For example:
 
 .. code-block:: python
+
    print(pyrend.r2p(0.3, -0.2))
    print(pyrend.r2p(0.4))
 
