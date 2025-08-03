@@ -1,6 +1,9 @@
 Overview
 ========
 
+PyRend
+------
+
 PyRend is a multipurpose Python library designed for easy control and management of Windows devices. Its main utility is its ability to draw invisible overlays onto the screen without a visible application window. These overlays are dynamic, can be altered live, and appear on top of all bordered or borderless windowed applications.
 
 The PyRend overlay includes various settings such as click-through functionality, and simple functions make it easy to draw shapes, images, text, or even videos to the screen.
