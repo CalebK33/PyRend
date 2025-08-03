@@ -5,7 +5,7 @@ Overlay
    :caption: Contents
    :maxdepth: 2
 
-   index
+   overview
    overlay
    sound
    input
