@@ -2,7 +2,7 @@ Welcome to PyRend's Documentation
 =================================
 
 .. toctree::
-   :caption: Navigation
+   :caption: Contents
    :maxdepth: 2
 
    overlay
