@@ -4,4 +4,4 @@ Overlay
 Overview
 --------
 
-PyRends overlay...
+PyRends overlay is
