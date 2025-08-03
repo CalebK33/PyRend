@@ -1,16 +1,6 @@
 Welcome to PyRend's Documentation
 =================================
 
-.. toctree::
-   :caption: Contents
-   :maxdepth: 2
-
-   overlay
-   sound
-   input
-   files
-   examples
-
 PyRend
 ------
 
@@ -200,4 +190,15 @@ Output:
 
    (58, 242, 4)
 
+Submodule contents
+------------------
 
+.. toctree::
+   :caption: Contents
+   :maxdepth: 2
+
+   overlay
+   sound
+   input
+   files
+   examples
