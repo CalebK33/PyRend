@@ -4,6 +4,8 @@
 
 It also includes support for playing and recording audio, handling video playback, and capturing/controlling keyboard input. PyRend is designed for scenarios where you want full control over what is drawn on screen, without creating a traditional GUI application, plus many more features.
 
+You can check out the PyRend documentation [here](https://pyrend.readthedocs.io/en/latest/).
+
 ---
 
 ## Features
