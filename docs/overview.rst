@@ -5,7 +5,6 @@ Overview
    :caption: Contents
    :maxdepth: 2
 
-   overview
    overlay
    sound
    input
