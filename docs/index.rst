@@ -6,8 +6,8 @@ Welcome to PyRend's Documentation
    :maxdepth: 2
 
    overlay
-   input
    sound
+   input
    files
    examples
    
