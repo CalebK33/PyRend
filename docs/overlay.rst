@@ -6,7 +6,6 @@ Overlay
    :maxdepth: 2
 
    overview
-   overlay
    sound
    input
    files
