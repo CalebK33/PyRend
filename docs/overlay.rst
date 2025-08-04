@@ -44,7 +44,7 @@ Creating items
 General
 -------
 
-PyRend overlay objects are created by assigning them to variables, which allows you to modify them later. For example, the code below creates a `ShapeItem` and assigns it to `myShape` (Ignoring parameters for now)
+PyRend overlay objects are created by assigning them to variables, which allows you to modify them later. For example, the code below creates a `ShapeItem` and assigns it to `myShape` (Ignoring parameters for now).
 
 .. code-block:: python
 
@@ -98,7 +98,7 @@ Text
 | **font** (str): The font to write in. See: Defining custom fonts
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
-Image
+Images
 -----
 
 .. code-block:: python
@@ -122,6 +122,18 @@ Image
 PyRend images can be in the format of JPEG, PNG, WEBP, GIF (Animation not supported) or SVG. More images types may work but aren't fully supported The **path** parameter can be either a relative or absoloute path, and must include the file extension. 
 The **keep_aspect_ratio** parameter determines whether to automatically resize the image to remain the file's aspect ratio. It will take the size tuple and modify it to stay the same aspect ratio, preventing the image from coming out squashed or stretched. 
 
-Point
------
+Points
+------
 
+PyRend uses points as invisible items that can store just a location and rotation. They are not rendered onto the screen, making them useful for storing a position, adding multiple joints or hitboxes to existing items, and are nessasairy for creating specific roation points. (See custom rotation points)
+
+.. code-block:: python
+
+    myPoint = pyrend.overlay.point(base_pos)
+
+**base_pos** (tuple): The  (`x, y`) position to be stored with the point, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
+
+Videos
+------
+
+Videos are one of the more complex features of PyRend, although they aren't fully supported. When a video is created, it will immediately play (presuming the loop has been started). 
