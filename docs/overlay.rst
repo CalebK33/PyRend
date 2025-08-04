@@ -44,19 +44,38 @@ Creating items
 General
 -------
 
-PyRend overlay objects are created by assigning them to variables, which allows you to modify them later. For example, the code below creates a `ShapeItem` and assigns it to `myShape`:
+PyRend overlay objects are created by assigning them to variables, which allows you to modify them later. For example, the code below creates a `ShapeItem` and assigns it to `myShape` (Ignoring parameters for now)
 
 .. code-block:: python
 
-  myShape = pyrend.overlay.shape({...})
+  myShape = pyrend.overlay.shape(...)
+
+With that said, we can begin to create items using the following functions.
 
 Shapes
 ------
 
-.. function:: pyrend.overlay.shape(params)
+Shapes in PyRend can be rectangular or elliptical. You can create them with `pyrend.overlay.shape` with default parameters like so:
 
-   Creates a shape item on the overlay.`
+.. code-block python
 
-   :param dict params: Dictionary of parameters defining the shape.
-   :returns: A `ShapeItem` object.
+    myShape = pyrend.overlay.shape(
+        iscircle = False,
+        pos = (0, 0),
+        size = (100, 100),
+        color = (255, 255, 255),
+        opacity = 1.0,
+        radius = 0,
+        z_index = 0
+    )
 
+**iscircle* (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  
+**pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels.  
+**size** (tuple): The (`width, height`) of the shape, in pixels.  
+**color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red.  
+**opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`).  
+**radius** (int): Corner radius (in pixels) for rectangular shapes. Ignored if iscircle=True.  
+**z_index** (int): Determines draw order. Shapes with a higher z_index appear above those with lower values.  
+
+Text
+----
