@@ -60,8 +60,8 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
 .. code-block:: python
 
     myShape = pyrend.overlay.shape(
-        iscircle = False,
-        pos = (0, 0),
+        iscircle=False,
+        pos=(0, 0),
         size = (100, 100),
         color = (255, 255, 255),
         opacity = 1.0,
@@ -83,8 +83,17 @@ Text
 .. code-block:: python
 
     myText = pyrend.overlay.write(
-        text
-        pos = (0, 0)
+        text,
+        pos = (0, 0),
+        size = (48),
+        color = (255, 255, 255),
+        font = "Arial",
+        z_index = 0
     )
 
 | **text** (str): The text to be written onto the overlay
+| **pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
+| **size** (tuple): The (`width, height`) of the shape, in pixels.  
+| **color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ 
+| **font** (str): The font to write in. See: Defining custom fonts
+| **z_index** (int): Determines draw order. Shapes with a higher z_index appear above those with lower values.  
