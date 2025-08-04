@@ -79,3 +79,12 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
 
 Text
 ----
+
+.. code-block:: python
+
+    myText = pyrend.overlay.write(
+        text
+        pos = (0, 0)
+    )
+
+| **text** (str): The text to be written onto the overlay
