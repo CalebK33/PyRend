@@ -220,4 +220,34 @@ This script creates a video that immidiately plays and closes when finished.
 
 .. note::
 
-    You can get the attribute `frames` to get a list of all loaded frames in the video or `frame_index` to get the current frame.
+    You can use the VideoItem's proptery `frames` to get a list of all loaded frames in the video or `frame_index` to get the current frame.
+
+Modifying Items
+===============
+
+Editing
+-------
+
+Visibility
+~~~~~~~~~~
+
+Position and Offset
+-------------------
+
+Heirachy
+--------
+
+Rotating
+--------
+
+Custom rotation points
+~~~~~~~~~~~~~~~~~~~~~~
+
+Other
+=====
+
+Properties
+----------
+
+Mouse
+-----
