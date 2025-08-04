@@ -69,7 +69,7 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
         z_index = 0
     )
 
-**iscircle** (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  \n
+**iscircle** (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  
 **pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ <br />
 **size** (tuple): The (`width, height`) of the shape, in pixels.  <br />
 **color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ <br />
