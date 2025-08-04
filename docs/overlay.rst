@@ -71,8 +71,7 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
 
 **iscircle** (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  
 
-**pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/
-index.html#pixel-vs-relative-coordinates>`
+**pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_
 
 **size** (tuple): The (`width, height`) of the shape, in pixels.  
 
