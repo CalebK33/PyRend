@@ -57,7 +57,7 @@ Shapes
 
 Shapes in PyRend can be rectangular or elliptical. You can create them with `pyrend.overlay.shape` with default parameters like so:
 
-.. code-block python
+.. code-block:: python
 
     myShape = pyrend.overlay.shape(
         iscircle = False,
@@ -69,12 +69,19 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
         z_index = 0
     )
 
-**iscircle* (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  
-**pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`
+**iscircle** (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  
+
+**pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/
+index.html#pixel-vs-relative-coordinates>`
+
 **size** (tuple): The (`width, height`) of the shape, in pixels.  
+
 **color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red.  
-**opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`).  
-**radius** (int): Corner radius (in pixels) for rectangular shapes. Ignored if iscircle=True.  
+
+**opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`).
+
+**radius** (int): Corner radius (in pixels) for rectangular shapes. Ignored if iscircle=True. 
+
 **z_index** (int): Determines draw order. Shapes with a higher z_index appear above those with lower values.  
 
 Text
