@@ -69,13 +69,13 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
         z_index = 0
     )
 
-**iscircle** (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  \
-**pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ \
-**size** (tuple): The (`width, height`) of the shape, in pixels.  \
-**color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red.  \
-**opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`).\
-**radius** (int): Corner radius (in pixels) for rectangular shapes. Ignored if iscircle=True. \
-**z_index** (int): Determines draw order. Shapes with a higher z_index appear above those with lower values.  \
+**iscircle** (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  <br />
+**pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ <br />
+**size** (tuple): The (`width, height`) of the shape, in pixels.  <br />
+**color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ <br />
+**opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`). <br />
+**radius** (int): Corner radius (in pixels) for rectangular shapes. Ignored if iscircle=True. <br />
+**z_index** (int): Determines draw order. Shapes with a higher z_index appear above those with lower values.  <br />
 
 Text
 ----
