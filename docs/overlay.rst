@@ -73,7 +73,7 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
 | **pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 | **size** (tuple): The (`width, height`) of the shape, in pixels.  
 | **color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ 
-| **opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`). 
+| **opacity** (float): Opacity of the shape from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). 
 | **radius** (int): Corner radius (in pixels) for rectangular shapes. Ignored if iscircle=True. 
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
@@ -115,7 +115,7 @@ Image
 | **path** (str): Path to the image. Read below for more info.
 | **pos** (tuple): The (`x, y`) position of the top-left corner of the image, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 | **size** (tuple): The (`width, height`) of the image, in pixels.  
-| **opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`). 
+| **opacity** (float): Opacity of the shape from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). 
 | **keep_aspect_ratio** (bool): If true, will automatically resize to remain aspect ratio. Read below for more info.
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
