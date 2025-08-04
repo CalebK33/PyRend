@@ -98,6 +98,33 @@ Text
 | **font** (str): The font to write in. See: Defining custom fonts
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
+Custom Fonts
+~~~~~~~~~~~~
+
+PyRend allows the addition of custom fonts via TrueType Font files (.ttf). You can load them with the function:
+
+.. code-block:: python
+
+    myFont = pyrend.overlay.load_font(path)
+
+**path** (str): The absoloute or relative path to a true type font file.
+
+**Example**
+
+Creating and using a custom font:
+
+.. code-block:: python
+
+    import pyrend
+
+    myFont = pyrend.overlay.load_font("assets/font.ttf")
+    myText = pyrend.overlay.write("This text uses a custom font", font=myFont)
+
+    def update():
+        pass
+
+    pyrend.start(update)
+
 Images
 -----
 
