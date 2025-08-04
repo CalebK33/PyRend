@@ -64,9 +64,9 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
         pos=(0, 0),
         size=(100, 100),
         color=(255, 255, 255),
-        opacity = 1.0,
-        radius = 0,
-        z_index = 0
+        opacity=1.0,
+        radius=0,
+        z_index=0
     )
 
 | **iscircle** (bool): Whether the shape is elliptical (`True`) or rectangular (`False`).  
@@ -75,7 +75,7 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
 | **color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ 
 | **opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`). 
 | **radius** (int): Corner radius (in pixels) for rectangular shapes. Ignored if iscircle=True. 
-| **z_index** (int): Determines draw order. Shapes with a higher z_index appear above those with lower values.  
+| **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
 Text
 ----
@@ -84,16 +84,44 @@ Text
 
     myText = pyrend.overlay.write(
         text,
-        pos = (0, 0),
-        size = (48),
-        color = (255, 255, 255),
-        font = "Arial",
-        z_index = 0
+        pos=(0, 0),
+        size=(48),
+        color=(255, 255, 255),
+        font="Arial",
+        z_index=0
     )
 
 | **text** (str): The text to be written onto the overlay
-| **pos** (tuple): The (`x, y`) position of the top-left corner of the shape, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
-| **size** (tuple): The (`width, height`) of the shape, in pixels.  
-| **color** (tuple): The RGB color of the shape, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ 
+| **pos** (tuple): The (`x, y`) position of the top-left corner of the text, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
+| **size** (tuple): The (`width, height`) of the text, in pixels.  
+| **color** (tuple): The RGB color of the text, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ 
 | **font** (str): The font to write in. See: Defining custom fonts
-| **z_index** (int): Determines draw order. Shapes with a higher z_index appear above those with lower values.  
+| **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
+
+Image
+-----
+
+.. code-block:: python
+
+    myImage = pyrend.overlay.image(
+        path,
+        pos=(0, 0),
+        size=(100, 100),
+        opacity=1.0,
+        keep_aspect_ratio=True,
+        z_index=0
+    )
+
+| **path** (str): Path to the image. Read below for more info.
+| **pos** (tuple): The (`x, y`) position of the top-left corner of the image, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
+| **size** (tuple): The (`width, height`) of the image, in pixels.  
+| **opacity** (float): Opacity of the shape from 0.0 (fully transparent) to 1.0 (`fully opaque`). 
+| **keep_aspect_ratio** (bool): If true, will automatically resize to remain aspect ratio. Read below for more info.
+| **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
+
+PyRend images can be in the format of JPEG, PNG, WEBP, GIF (Animation not supported) or SVG. More images types may work but aren't fully supported The **path** parameter can be either a relative or absoloute path, and must include the file extension. 
+The **keep_aspect_ratio** parameter determines whether to automatically resize the image to remain the file's aspect ratio. It will take the size tuple and modify it to stay the same aspect ratio, preventing the image from coming out squashed or stretched. 
+
+Point
+-----
+
