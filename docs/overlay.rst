@@ -62,8 +62,8 @@ Shapes in PyRend can be rectangular or elliptical. You can create them with `pyr
     myShape = pyrend.overlay.shape(
         iscircle=False,
         pos=(0, 0),
-        size = (100, 100),
-        color = (255, 255, 255),
+        size=(100, 100),
+        color=(255, 255, 255),
         opacity = 1.0,
         radius = 0,
         z_index = 0
