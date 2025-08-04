@@ -136,4 +136,88 @@ PyRend uses points as invisible items that can store just a location and rotatio
 Videos
 ------
 
-Videos are one of the more complex features of PyRend, although they aren't fully supported. When a video is created, it will immediately play (presuming the loop has been started). 
+Videos are one of the more complex features of PyRend, although they aren't fully supported. When a video is created, it will immediately play (presuming the loop has been started). When the video ends, by default it will loop iteself, but also call a function that you can specify in the parameters. Therefore you could set a function to stop the video when it finishs. Videos also have a few unique methods. 
+
+.. warning::
+
+    Videos are not fully supported in PyRend. Videos can lag significantly and cause immense strain on CPU. 
+
+    It is also not currently possible to sync audio to video. 
+
+Videos can be either pre-loaded or played immediately. Pre-loading a video will be less intense on the CPU, so you should use it when you don't need to play a video immediately. You can pre-load a video like this:
+
+.. code-block:: python
+
+    videoPreload = pyrend.overlay.load_video(path)
+
+**path** (str): Absoloute or relative path to a .mp4, .mov or .webm video file to be loaded under that variable.
+
+That video will be loaded and can be later used to create a video item. You can create one like this:
+
+.. code-block:: python
+
+    myVideo = pyrend.overlay.video(
+        video_data_or_path
+        base_pos=(0, 0)
+        size=None
+        opacity=1.0
+        on_end=None
+        on_end_args=None
+        z_index=0
+        keep_aspect_ratio=True
+        smooth=False
+    )
+
+| **video_data_or_path** (str/data): Can be either a string path to a video or a pre-loaded video.
+| **base_pos** (tuple): The  (`x, y`) position of the top-left corecer of the video, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
+| **size** (tuple): | **size** (tuple): The (`width, height`) of the video, in pixels. If left blank will use video size.
+| **opacity** (float): Opacity of the video from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). Can increase lag.
+| **on_end** (function): Function to be called when the video ends.
+| **on_end_args** (any): Arguments to be passed to the on_end function. (Slightly buggy)
+| **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
+| **keep_aspect_ratio** (bool): If true, will automatically resize to remain aspect ratio, no matter what width/height is specified.
+| **smooth** (bool): Whether to slow the video down to attempt to smooth lag. 
+
+Video methods
+~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    myVideo.seek(seconds)
+
+Skip to a certain time length into the video. `seconds` must be an integer. Using 0 will restart the video.
+
+.. code-block:: python
+
+    myVideo.pause()
+
+Pauses the video until played.
+
+.. code-block:: python
+
+    myVideo.play(seconds)
+
+Resumes a paused video.
+
+Example
+~~~~~~~
+
+This script creates a video that immidiately plays and closes when finished. 
+
+.. code-block:: python
+
+    import pyrend
+
+    def finished():
+        pyrend.close()
+    
+    myVideo = pyrend.overlay.video("clip.mp4", (300, 200), (500, 300), on_end=finished)
+    
+    def update():
+        pass
+    
+    pyrend.start(update)
+
+.. note::
+
+    You can get the attribute `frames` to get a list of all loaded frames in the video or `frame_index` to get the current frame.
