@@ -293,6 +293,57 @@ Editing an item is the easiest way to modify it. `edit()` is a method on all ite
         rotation=None,
     )
 
+When you edit, you can specify any properties you would like to change. This documentation will not include the unique edit methods for every item, but it should be pretty self explanatory. To put it simply, this would be how you change the colour of a shape:
+
+.. code-block:: python
+
+    myShape.edit(color=(0, 255, 0))
+
+Therefore you could also put things in your update function to change them dynamically. Therefore you could make something like this script which immidiately fades out an image when the script is run:
+
+.. code-block:: python
+
+    import pyrend
+    
+    image = pyrend.overlay.image("image.png", (100, 100), (500, 500))
+    
+    def my_update_loop():
+        if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+            pyrend.close()
+        if image.opacity > 0:
+            image.edit(opacity=image.opacity - 0.01)
+        else:
+            pyrend.close()
+    
+    pyrend.start(my_update_loop)
+
+Or this script which will create a circle in the center of the screen every time the space key is pressed. See: Detecting Keypresses
+
+import pyrend
+import random
+
+circles = []
+spacedown = False
+
+def my_update_loop():
+    global spacedown  
+
+    if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+        pyrend.close()
+
+    if pyrend.input.is_key_down("SPACE") and not spacedown:
+        spacedown = True
+        circle = pyrend.overlay.shape(
+            True,
+            (random.randint(0, 1950), random.randint(0, 1020)),
+            (150, 150)
+        )
+        circles.append(circle)
+    elif not pyrend.input.is_key_down("SPACE"):
+        spacedown = False
+
+pyrend.start(my_update_loop)
+
 Visibility
 ~~~~~~~~~~
 
