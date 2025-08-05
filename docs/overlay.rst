@@ -307,25 +307,26 @@ Therefore you could also put things in your update function to change them dynam
     
     image = pyrend.overlay.image("image.png", (100, 100), (500, 500))
     
-    def my_update_loop():
+    def my_update_loop():        # The update loop is called 60 times a second
         if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
             pyrend.close()
         if image.opacity > 0:
-            image.edit(opacity=image.opacity - 0.01)
-        else:
-            pyrend.close()
+            image.edit(opacity=image.opacity - 0.01)    # Opacity is a decimal value, therefore descreasing at 
+                                                        # 0.01pf at 60fps will take 1.6 seconds to dissapear.
+        else:                                           
+            pyrend.close()    # Finish the program when the image has vanished
     
     pyrend.start(my_update_loop)
 
-Or this script which will create a circle in the center of the screen every time the space key is pressed. See: Detecting Keypresses
+Or this script which will create a circle in a random loction on the screen every time the space key is pressed. See: Detecting Keypresses
 
 .. code-block:: python
 
     import pyrend
-    import random
+    import random    # Use random to create circles in random positions
     
-    circles = []
-    spacedown = False
+    circles = []        # Store a list of all existing circles
+    spacedown = False    
     
     def my_update_loop():
         global spacedown  
@@ -333,15 +334,15 @@ Or this script which will create a circle in the center of the screen every time
         if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
             pyrend.close()
     
-        if pyrend.input.is_key_down("SPACE") and not spacedown:
+        if pyrend.input.is_key_down("SPACE") and not spacedown:     # Only execute once after space is pressed
             spacedown = True
-            circle = pyrend.overlay.shape(
+            circle = pyrend.overlay.shape(        # Create a new circle at a random position
                 True,
                 (random.randint(0, 1950), random.randint(0, 1020)),
                 (150, 150)
             )
             circles.append(circle)
-        elif not pyrend.input.is_key_down("SPACE"):
+        elif not pyrend.input.is_key_down("SPACE"):    # Detect if the space key has already been down for a frame
             spacedown = False
     
     pyrend.start(my_update_loop)
@@ -349,16 +350,18 @@ Or this script which will create a circle in the center of the screen every time
 Visibility
 ----------
 
-You can choose whether a PyRend object will be visible using the `hide()` or `show()` methods. Usage:
+You can choose whether a PyRend object will be visible using the `hide()` or `show()` methods. 
+
+.. note::
+
+    Hidden items will still have collision, and can be altered while hidden. Hiding an item will only skip it from being drawn onto the screen. 
+
+Usage:
 
 .. code-block:: 
 
     myItem.hide() # Make the item invisible 
     myItem.show() # Make the item visible again
-
-.. note::
-
-    Hidden items will still have collision, and can be altered while hidden. Hiding an item will only skip it from being drawn onto the screen. 
 
 You can also delete an item using:
 
