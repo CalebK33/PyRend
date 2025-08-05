@@ -355,6 +355,15 @@ Or this script which will create a circle in a random loction on the screen ever
 
     However it is more reccomended to use edit for properties such as position which have multiple backend variables that cannot be manually changed.  
 
+You can also move an item using:
+
+..code-block:: python
+
+    myItem.move(x, y, change=False)
+
+**x** and **y**: The pixel position to move the item to.
+**change** (bool): Whether to instantly move the item to the specified coordinates (`False`) or to alter its current position by the values specified (`True`)
+
 Visibility
 ----------
 
@@ -388,9 +397,55 @@ Heirachy
 Rotating
 --------
 
+Items can also be rotated using either `edit()` or `rotate`. Items rotate around the top left of the item, regardless of offset. Therefore if you were to center an item, it would appear to be rotating around its center. Items can be rotated like this:
+
+.. code-block:: python
+
+    myItem.rotate(degrees, change=True)
+
+**degrees** (int): Integer of degrees to rotate the item.
+**change** (bool): True by default, determintes whether to add the specified degrees to it's current rotation (`True`) or set its current rotation to the degrees specified (`False`)
 
 Custom rotation points
 ~~~~~~~~~~~~~~~~~~~~~~
+
+Since rotation is based around parent rotation if in a heirachy, this can be taken advantage of to create custom rotation points using `PointItems <#points>`_. You can set the PointItem as a parent of a shape and rotate it to have a custom rotation point. It's rotation point will then be essentially set to it's parent offset (See: `Hierachy <#heirachy>`_). 
+
+This script will create a rectangle with a custom rotation point just left of it's center, and spins it to demonstrate:
+
+.. code-block:: python
+
+    import pyrend
+
+    myShape = pyrend.overlay.shape(False, (300, 300), (500, 200), (255, 0, 0))
+    myRotationPoint = pyrend.overlay.point((425, 400))
+    myShape.become_child_of(myRotationPoint)
+    
+    def my_update_loop():
+        if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+            pyrend.close()
+        
+        myRotationPoint.rotate(1)
+    
+    pyrend.start(my_update_loop)
+
+Or alternatively, define the roation point as a propery of the ShapeItem (IDE Autocorrect won't support):
+
+.. code-block:: python
+
+    import pyrend
+    
+    myShape = pyrend.overlay.shape(False, (300, 300), (500, 200), (255, 0, 0))
+    myShape.rotationPoint = pyrend.overlay.point((425, 400))
+    myShape.become_child_of(myShape.rotationPoint)
+    
+    def my_update_loop():
+        if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+            pyrend.close()
+        
+        myShape.rotationPoint.rotate(1)
+    
+    pyrend.start(my_update_loop)
 
 Other
 =====
