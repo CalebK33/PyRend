@@ -416,16 +416,19 @@ This is the coordinate used when drawing the item on screen, checking collisions
 Summary 
 -------
 
-Property             Meaning                                                        How to Modify
--------------------  -------------------------------------------------------------  -------------------------------
-``base_pos``          Original anchor position; not affected by offset              Set via constructor or ``move()``
-``offset``            Visual adjustment; affects drawing and logic                 Use ``move_offset(x, y)``
-``parent_offset``     Relative position from parent; set when parenting            Automatically set via ``become_child_of()``
-``get_absolute_pos()``  Computed from base_pos, parents, and rotation              Read-only (computed)
-``pos``               Final visual position (absolute + offset)                    Read-only (computed)
-``x``, ``y``           Cached screen position set at init                           Not recommended to modify directly
-``abs_pos``           Snapshot of absolute position at creation                     Not updated; avoid modifying
-``rotation``          Rotation in degrees (cumulative via parents)                 Use ``rotate(degrees)`` or set directly
+=========   ==========================================   ==================
+Property     Meaning                                      How to Modify
+---------    ------------------------------------------   ------------------
+base_pos     Original anchor position; not affected by   Set via constructor or ``move()``
+             offset
+offset       Visual adjustment; affects drawing          Use ``move_offset(x, y)``
+parent_offset Relative offset from parent; auto-set      Via ``become_child_of()``
+get_absolute_pos() Computed from base_pos, parents, and rotation Read-only
+pos          Final visual position (abs + offset)        Read-only
+x, y         Cached screen position at initialization    Do not modify
+abs_pos      Cached absolute position                   Do not modify
+rotation     Rotation in degrees (cumulative via parents) Use ``rotate(degrees)``
+=========   ==========================================   ==================
 
 
 Tip: Always use ``pos`` and ``get_absolute_pos()`` for dynamic logic like collision, drawing, or movement logic.
