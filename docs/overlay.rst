@@ -364,7 +364,7 @@ You can also move an item using:
 **x** and **y**: The pixel position to move the item to.
 **change** (bool): Whether to instantly move the item to the specified coordinates (`False`) or to alter its current position by the values specified (`True`)
 
-You can also alter the offset of an item using the similar method ``move_offset()``, which works in the exact same way but for the items offset. To learn what an items offset is, see `Position and Offset<#position-and-offset>`_.
+You can also alter the offset of an item using the similar method ``move_offset()``, which works in the exact same way but for the items offset. To learn what an items offset is, see `Position and Offset <#position-and-offset>`_.
 
 Visibility
 ----------
