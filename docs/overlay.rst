@@ -389,10 +389,74 @@ You can also delete an item using:
 The **soft** parameter is False by default and defines whether the item will be soft or hard deleted. Soft deleted items are still stored in memory but not drawn/processed. This means they are technically recoverable, and your script will be able to handle referencing it after deletion. Hard deletion immediatly erases the item from memory. Hard deleting an item makes it unable to be recovered completely. It is highly reccomended to use hard deletion for deletion of objects in mass, most likely items created in iteration (eg. particles, game enemies).    
 
 Position and Offset
--------------------
+===============================
+
+How position, offset, absolute position and base position work in PyRend is one of the more complex aspects of PyRend to understand.
+
+**offset** is a tuple property that remains at ``(0, 0)`` until changed using the ``move_offset(x, y)`` method. It adjusts the *visual position* of an item without modifying its base coordinates. An item's offset is taken into account when drawn, so it allows changing where it appears visually **without altering its logical or hierarchical location**.
+
+Offset **is** taken into account when detecting collisions, calculating `pos`, and responding to mouse hover or interaction events.
+
+**base_pos** is a tuple that defines the *original or intended position* of the item in screen or world space. It is the starting point of the item, ignoring any visual adjustments (like offset). For items without a parent, `base_pos` represents their core anchor point. For child items, `base_pos` is set to the *position of the parent* at the time the child relationship is formed.
+
+**parent_offset** is the relative distance between the item's `base_pos` and the current position of its parent. It's automatically calculated when an item becomes a child of another using ``become_child_of()``. This offset is then transformed (rotated if needed) and added to the parent's absolute position.
+
+**absolute position** (as returned by ``get_absolute_pos()``) is the calculated position of the item based on its base position, parent hierarchy, and rotation — but **not** including the visual offset.
+
+**pos** is a read-only property that returns the final visual position of the item. It combines:
+- the `absolute position` of the item
+- plus the current `offset`
+
+This is the coordinate used when drawing the item on screen, checking collisions, and tracking mouse interaction.
+
+**x** and **y** are stored internally for convenience but are calculated once in the constructor and not automatically updated if other properties change. They are not as reliable as `pos` or `get_absolute_pos()` and generally should not be used.
+
+**abs_pos** is another snapshot-style attribute computed in the constructor. Like `x` and `y`, it's based on the state at initialization and not updated dynamically. Instead, always use `get_absolute_pos()` when you want live, correct information.
+
+Summary Table
+-------------
+
++------------------+-------------------------------------------------------------+
+| **Property**     | **Meaning**                                                 |
++==================+=============================================================+
+| ``base_pos``     | Original anchor position; not affected by offset            |
++------------------+-------------------------------------------------------------+
+| ``offset``       | Visual adjustment (e.g., for alignment); affects drawing    |
++------------------+-------------------------------------------------------------+
+| ``parent_offset``| Relative offset from parent, used for parenting             |
++------------------+-------------------------------------------------------------+
+| ``get_absolute_pos()`` | Base position + parent hierarchy + rotation          |
++------------------+-------------------------------------------------------------+
+| ``pos``          | Final visual position (absolute position + offset)          |
++------------------+-------------------------------------------------------------+
+| ``x``, ``y``      | Cached positions set in constructor (not dynamic)           |
++------------------+-------------------------------------------------------------+
+| ``abs_pos``      | Cached absolute position snapshot (not updated live)        |
++------------------+-------------------------------------------------------------+
+
+Tip: Always use ``pos`` and ``get_absolute_pos()`` for dynamic logic like collision, drawing, or movement logic.
+
 
 Heirachy
 --------
+
+PyRend has a heirachy that uses children and parents. Children will mimic the parents rotation and position, taking into account parent offset. Children and parents can be assigned in one of two ways:
+
+.. code-block:: python
+
+    Item1.become_child_of(Item2)
+    # Or...
+    Item2.become_parent_of(Item1)
+
+**Parent offset** is a property (`parent_offset`) that is set when you assign a parent to an item. It will store it's position relative to it's parent and it's absoloute position will take this into account every frame. When an item is a child, it cannot be moved as normal, you will only be able to change it's offset, or it's parent offset depending on if you want to move it visually or physically. Note that you can only assign one parent to an object, and trying to set a new parent will replace it's old parent.
+
+To remove a parent or children, you can use `free()`:
+
+.. code-block:: python
+
+    Item1.free(inverse=False)
+
+**inverse** (bool): Whether to inverse the effects of the `free()` method. When False, the item will become free from any parents, and when False, will free all of it's children. 
 
 Rotating
 --------
@@ -403,8 +467,8 @@ Items can also be rotated using either `edit()` or `rotate`. Items rotate around
 
     myItem.rotate(degrees, change=True)
 
-**degrees** (int): Integer of degrees to rotate the item.
-**change** (bool): True by default, determintes whether to add the specified degrees to it's current rotation (`True`) or set its current rotation to the degrees specified (`False`)
+| **degrees** (int): Integer of degrees to rotate the item.
+| **change** (bool): True by default, determintes whether to add the specified degrees to it's current rotation (`True`) or set its current rotation to the degrees specified (`False`)
 
 Custom rotation points
 ~~~~~~~~~~~~~~~~~~~~~~
