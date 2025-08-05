@@ -95,7 +95,7 @@ Text
 | **pos** (tuple): The (`x, y`) position of the top-left corner of the text, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 | **size** (tuple): The (`width, height`) of the text, in pixels.  
 | **color** (tuple): The RGB color of the text, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ 
-| **font** (str): The font to write in. See: Defining custom fonts
+| **font** (str): The font to write in. See: Custom Fonts (below)
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
 Custom Fonts
@@ -249,11 +249,49 @@ This script creates a video that immidiately plays and closes when finished.
 
     You can use the VideoItem's proptery `frames` to get a list of all loaded frames in the video or `frame_index` to get the current frame.
 
+    Example: `print(f"The video is on frame {myVideo.frame_index}")`
+
+Demonstration
+-------------
+
+This script uses multiple of the items shown in this section to draw a square image to the screen, and add a rounded border and custom font title to it. Note that the things you can do with PyRend greatly expands with the ability to modify items, documented in the next section. 
+
+.. code-block:: python
+
+    import pyrend
+
+    border = pyrend.overlay.shape(False, (70, 70), (430, 430), (255, 100, 0), radius=10)
+    image = pyrend.overlay.image("image.png", (100, 100), (370, 370), keep_aspect_ratio=False)
+    font = pyrend.overlay.load_font("font.ttf")
+    title = pyrend.overlay.write("Image", (120, 440), 30, font=font)
+    
+    def my_update_loop():
+        if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+            pyrend.close()
+    
+    pyrend.start(my_update_loop)
+
+
 Modifying Items
 ===============
 
+The possiblities of PyRend greatly expand when you can modify items during the loop. This means you can create games, interactable interfaces or other dynamic effects. 
+
 Editing
 -------
+
+Editing an item is the easiest way to modify it. `edit()` is a method on all items that allows you to change the properties. As different items have some different properties, the edit method changes slightly between item types. This is an example of the edit method on a ShapeItem:
+
+.. code-block:: python
+
+    myShape.edit(
+        base_pos=None,
+        size=None,
+        color=None,
+        opacity=None,
+        radius=None,
+        rotation=None,
+    )
 
 Visibility
 ~~~~~~~~~~
