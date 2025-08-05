@@ -347,7 +347,26 @@ Or this script which will create a circle in the center of the screen every time
     pyrend.start(my_update_loop)
 
 Visibility
-~~~~~~~~~~
+----------
+
+You can choose whether a PyRend object will be visible using the `hide()` or `show()` methods. Usage:
+
+.. code-block:: 
+
+    myItem.hide() # Make the item invisible 
+    myItem.show() # Make the item visible again
+
+.. note::
+
+    Hidden items will still have collision, and can be altered while hidden. Hiding an item will only skip it from being drawn onto the screen. 
+
+You can also delete an item using:
+
+.. code-block:: 
+
+    myItem.delete(soft=False)
+
+The **soft** parameter is False by default and defines whether the item will be soft or hard deleted. Soft deleted items are still stored in memory but not drawn/processed. This means they are technically recoverable, and your script will be able to handle referencing it after deletion. Hard deletion immediatly erases the item from memory. Hard deleting an item makes it unable to be recovered completely. It is highly reccomended to use hard deletion for deletion of objects in mass, most likely items created in iteration (eg. particles, game enemies).    
 
 Position and Offset
 -------------------
