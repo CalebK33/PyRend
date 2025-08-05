@@ -357,7 +357,7 @@ Or this script which will create a circle in a random loction on the screen ever
 
 You can also move an item using:
 
-..code-block:: python
+.. code-block:: python
 
     myItem.move(x, y, change=False)
 
