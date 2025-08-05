@@ -347,6 +347,14 @@ Or this script which will create a circle in a random loction on the screen ever
     
     pyrend.start(my_update_loop)
 
+.. note::
+
+    Technically you can also manually change the properties of an item siply by doing:
+
+    `myItem.opacity += 0.2` 
+
+    However it is more reccomended to use edit for properties such as position which have multiple backend variables that cannot be manually changed.  
+
 Visibility
 ----------
 
@@ -379,6 +387,7 @@ Heirachy
 
 Rotating
 --------
+
 
 Custom rotation points
 ~~~~~~~~~~~~~~~~~~~~~~
