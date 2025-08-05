@@ -319,30 +319,32 @@ Therefore you could also put things in your update function to change them dynam
 
 Or this script which will create a circle in the center of the screen every time the space key is pressed. See: Detecting Keypresses
 
-import pyrend
-import random
+.. code-block:: python
 
-circles = []
-spacedown = False
-
-def my_update_loop():
-    global spacedown  
-
-    if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
-        pyrend.close()
-
-    if pyrend.input.is_key_down("SPACE") and not spacedown:
-        spacedown = True
-        circle = pyrend.overlay.shape(
-            True,
-            (random.randint(0, 1950), random.randint(0, 1020)),
-            (150, 150)
-        )
-        circles.append(circle)
-    elif not pyrend.input.is_key_down("SPACE"):
-        spacedown = False
-
-pyrend.start(my_update_loop)
+    import pyrend
+    import random
+    
+    circles = []
+    spacedown = False
+    
+    def my_update_loop():
+        global spacedown  
+    
+        if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+            pyrend.close()
+    
+        if pyrend.input.is_key_down("SPACE") and not spacedown:
+            spacedown = True
+            circle = pyrend.overlay.shape(
+                True,
+                (random.randint(0, 1950), random.randint(0, 1020)),
+                (150, 150)
+            )
+            circles.append(circle)
+        elif not pyrend.input.is_key_down("SPACE"):
+            spacedown = False
+    
+    pyrend.start(my_update_loop)
 
 Visibility
 ~~~~~~~~~~
