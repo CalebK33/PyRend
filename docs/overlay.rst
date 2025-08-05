@@ -158,7 +158,7 @@ PyRend uses points as invisible items that can store just a location and rotatio
 
     myPoint = pyrend.overlay.point(base_pos)
 
-**base_pos** (tuple): The  (`x, y`) position to be stored with the point, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
+**base_pos** (tuple): The (`x, y`) position to be stored with the point, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 
 Videos
 ------
@@ -351,7 +351,7 @@ Or this script which will create a circle in a random loction on the screen ever
 
     Technically you can also manually change the properties of an item siply by doing:
 
-    `myItem.opacity += 0.2` 
+    ``myItem.opacity += 0.2`` 
 
     However it is more reccomended to use edit for properties such as position which have multiple backend variables that cannot be manually changed.  
 
@@ -409,14 +409,14 @@ Offset **is** taken into account when detecting collisions, calculating `pos`, a
 
 This is the coordinate used when drawing the item on screen, checking collisions, and tracking mouse interaction.
 
-**x** and **y** are stored internally for convenience but are calculated once in the constructor and not automatically updated if other properties change. They are not as reliable as `pos` or `get_absolute_pos()` and generally should not be used.
+**x** and **y** are stored internally for convenience but are calculated once in the constructor and not automatically updated if other properties change. They are not as reliable as `pos` or ``get_absolute_pos()`` and generally should not be used.
 
-**abs_pos** is another snapshot-style attribute computed in the constructor. Like `x` and `y`, it's based on the state at initialization and not updated dynamically. Instead, always use `get_absolute_pos()` when you want live, correct information.
+**abs_pos** is another snapshot-style attribute computed in the constructor. Like `x` and `y`, it's based on the state at initialization and not updated dynamically. Instead, always use ``get_absolute_pos()`` when you want live, correct information.
 
 Summary 
 -------
 
-.. list-table:: Summary of Position Properties
+.. list-table:: Summary
    :header-rows: 1
    :widths: 20 50 30
 
@@ -465,18 +465,18 @@ PyRend has a heirachy that uses children and parents. Children will mimic the pa
 
 **Parent offset** is a property (`parent_offset`) that is set when you assign a parent to an item. It will store it's position relative to it's parent and it's absoloute position will take this into account every frame. When an item is a child, it cannot be moved as normal, you will only be able to change it's offset, or it's parent offset depending on if you want to move it visually or physically. Note that you can only assign one parent to an object, and trying to set a new parent will replace it's old parent.
 
-To remove a parent or children, you can use `free()`:
+To remove a parent or children, you can use ``free()``:
 
 .. code-block:: python
 
     Item1.free(inverse=False)
 
-**inverse** (bool): Whether to inverse the effects of the `free()` method. When False, the item will become free from any parents, and when False, will free all of it's children. 
+**inverse** (bool): Whether to inverse the effects of the ``free()`` method. When False, the item will become free from any parents, and when False, will free all of it's children. 
 
 Rotating
 --------
 
-Items can also be rotated using either `edit()` or `rotate`. Items rotate around the top left of the item, regardless of offset. Therefore if you were to center an item, it would appear to be rotating around its center. Items can be rotated like this:
+Items can also be rotated using either ``edit()`` or `rotate`. Items rotate around the top left of the item, regardless of offset. Therefore if you were to center an item, it would appear to be rotating around its center. Items can be rotated like this:
 
 .. code-block:: python
 
