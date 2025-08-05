@@ -413,26 +413,20 @@ This is the coordinate used when drawing the item on screen, checking collisions
 
 **abs_pos** is another snapshot-style attribute computed in the constructor. Like `x` and `y`, it's based on the state at initialization and not updated dynamically. Instead, always use `get_absolute_pos()` when you want live, correct information.
 
-Summary Table
--------------
+Summary 
+-------
 
-+------------------+-------------------------------------------------------------+
-| **Property**     | **Meaning**                                                 |
-+==================+=============================================================+
-| ``base_pos``     | Original anchor position; not affected by offset            |
-+------------------+-------------------------------------------------------------+
-| ``offset``       | Visual adjustment (e.g., for alignment); affects drawing    |
-+------------------+-------------------------------------------------------------+
-| ``parent_offset``| Relative offset from parent, used for parenting             |
-+------------------+-------------------------------------------------------------+
-| ``get_absolute_pos()`` | Base position + parent hierarchy + rotation          |
-+------------------+-------------------------------------------------------------+
-| ``pos``          | Final visual position (absolute position + offset)          |
-+------------------+-------------------------------------------------------------+
-| ``x``, ``y``      | Cached positions set in constructor (not dynamic)           |
-+------------------+-------------------------------------------------------------+
-| ``abs_pos``      | Cached absolute position snapshot (not updated live)        |
-+------------------+-------------------------------------------------------------+
+Property             Meaning                                                        How to Modify
+-------------------  -------------------------------------------------------------  -------------------------------
+``base_pos``          Original anchor position; not affected by offset              Set via constructor or ``move()``
+``offset``            Visual adjustment; affects drawing and logic                 Use ``move_offset(x, y)``
+``parent_offset``     Relative position from parent; set when parenting            Automatically set via ``become_child_of()``
+``get_absolute_pos()``  Computed from base_pos, parents, and rotation              Read-only (computed)
+``pos``               Final visual position (absolute + offset)                    Read-only (computed)
+``x``, ``y``           Cached screen position set at init                           Not recommended to modify directly
+``abs_pos``           Snapshot of absolute position at creation                     Not updated; avoid modifying
+``rotation``          Rotation in degrees (cumulative via parents)                 Use ``rotate(degrees)`` or set directly
+
 
 Tip: Always use ``pos`` and ``get_absolute_pos()`` for dynamic logic like collision, drawing, or movement logic.
 
