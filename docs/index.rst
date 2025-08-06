@@ -8,7 +8,7 @@ PyRend is a multipurpose Python library designed for easy control and management
 
 The PyRend overlay includes various settings such as click-through functionality, and simple functions make it easy to draw shapes, images, text, or even videos to the screen.
 
-PyRend also includes a range of features that simplify advanced modules like `ctypes` to:
+PyRend also includes a range of features that simplify advanced modules like `ctypes` to: 
 
 - Detect global keypresses
 - Play or record sound
