@@ -45,6 +45,8 @@ Features
    - Download files from URLs
    - Return open applications as manipulatable objects
 
+PyRend is only supported for Windows 10 and 11 operating systems. Attemping to run PyRend scripts on MacOS, Linux or an older version of Windows may have unexpected results. 
+
 Getting Started
 ===============
 
