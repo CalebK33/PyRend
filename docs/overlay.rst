@@ -563,8 +563,10 @@ You can return the width or height of the screen using the ``screen_size`` metho
 
     w, h = pyrend.overlay.screen_size() --> tuple
 
+Both variables in the tuple will be integers. 
+
 Collision
----------
+~~~~~~~~~
 
 You can detect a collisions between two objects using:
 
@@ -577,4 +579,11 @@ This will detect if any point of Item1 intersects with Item2. Collision does **n
 Mouse
 -----
 
+The PyRend overlay has a range of features relating to managing the mouse and interacting with items, however the possibilities of user input expands significantly using the `input submodule <https://pyrend.readthedocs.io/en/latest/input.html>`_.  The following are mouse related features in the overlay submodule.
+
+.. code-block:: python
+
+    pyrend.overlay.get_mouse_pos() --> tuple
+
+Returns a tuple with two integers, x and y, with the current position of the mouse. 
 
