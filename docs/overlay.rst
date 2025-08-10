@@ -47,9 +47,6 @@ This section of the documentation will guide you through how to create and use e
 Creating items
 ==============
 
-General
--------
-
 PyRend overlay objects are created by assigning them to variables, which allows you to modify them later. For example, the code below creates a `ShapeItem` and assigns it to `myShape` (Ignoring parameters for now).
 
 .. code-block:: python
