@@ -36,7 +36,7 @@ This submodule documentation assumes you already know how to create and understa
 
     The PyRend overlay does not show on the taskbar and will be classified under something like ``Console Windows Host`` in the task manager. This is normally shown        whether PyRend is running or not, meaning there is no way to tell the overlay is open.
 
-    However, if you package a PyRend script into an exe file using PyInstaller (or any altrenative), the PyRend overlay will appear in the task manager under the name      and icon of that executable.
+    However, if you package a PyRend script into an exe file using PyInstaller (or any alternative), the PyRend overlay will appear in the task manager under the name      and icon of that executable.
 
 Items
 -----
