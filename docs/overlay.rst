@@ -32,6 +32,12 @@ This submodule documentation assumes you already know how to create and understa
 
     pyrend.start(my_update_loop)
 
+.. note::
+
+    The PyRend overlay does not show on the taskbar and will be classified under something like ``Console Windows Host`` in the task manager. This is normally shown as     whether PyRend is open or not, meaning there is no way to tell the overlay is open.
+
+    However, if you package a PyRend script into an exe file using PyInstaller (or any altrenative), the PyRend overlay will appear in the task manager under the name      and icon of that executable.
+
 Items
 -----
 
@@ -453,6 +459,17 @@ Summary
 
 Tip: Always use ``pos`` and ``get_absolute_pos()`` for dynamic logic like collision, drawing, or movement logic.
 
+You can also use ``offset`` to align an item to the center of its position. You can easily do this with the build in method:
+
+.. code-block:: python
+
+    Item.align_center(x=True, y=True)
+
+This will set it's offset to half of its width and height, essentially centering it on the screen. You can specify whether just just center it on the x or y plane by setting the variables you want to align to True, which they both are by default. Note that when aligned to the center, all previous offset will be cleared. If you want previous offset to be saved after alignment, you will have to store it in a variable **before** alignment and apply it afterwards.
+
+.. warning::
+
+    In PyRend 0.1.31, PyRend uses the width and height methods to calculate center. These are currently outdated and use the specified aspect ratio rather than the         modified aspect ration when ``keep_aspect_ratio`` is enabled. This is planned to be fixed in PyRend 0.1.4.
 
 Heirachy
 --------
@@ -534,5 +551,33 @@ Other
 Properties
 ----------
 
+You can return the width and height of an item using:
+
+.. code-block:: python
+
+    w = Item.width() --> int
+    h = Item.height() --> int
+
+Note that in PyRend 0.1.31 this does not take into account changed aspect ration when keep_aspect_ratio is enabled, causing width and height to be unreliable. This is planned to be fixed in PyRend 0.1.4
+
+You can return the width or height of the screen using the ``screen_size`` method:
+
+.. code-block:: python
+
+    w, h = pyrend.overlay.screen_size() --> tuple
+
+Collision
+---------
+
+You can detect a collisions between two objects using:
+
+.. code-block:: python
+
+    Item1.get_collision(Item2) --> bool
+
+This will detect if any point of Item1 intersects with Item2. Collision does **not** take into account rotation. Collision detection for ellipses or text will use a full square hitbox, rather than what is visible. 
+
 Mouse
 -----
+
+
