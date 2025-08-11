@@ -165,6 +165,17 @@ PyRend uses points as invisible items that can store just a location and rotatio
 
 **base_pos** (tuple): The (`x, y`) position to be stored with the point, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 
+Debug Mode
+~~~~~~~~~~
+
+By enabling debug mode, all points will apear on top of everything as small red dots. This can make it easier to debug errors or visualise things. You can enable debug mode using:
+
+.. code-block:: python
+
+    pyrend.overlay.enable_debug(enable=True)
+
+**enable** (bool): Whether to turn debug mode on or off.
+
 Videos
 ------
 
