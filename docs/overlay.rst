@@ -47,7 +47,7 @@ This section of the documentation will guide you through how to create and use e
 Creating items
 ==============
 
-PyRend overlay objects are created by assigning them to variables, which allows you to modify them later. For example, the code below creates a `ShapeItem` and assigns it to `myShape` (Ignoring parameters for now).
+PyRend overlay objects are created by assigning them to variables, which allows you to modify them later. For example, the code below creates a ``ShapeItem`` and assigns it to `myShape` (Ignoring parameters for now).
 
 .. code-block:: python
 
@@ -58,7 +58,7 @@ With that said, we can begin to create items using the following functions.
 Shapes
 ------
 
-Shapes in PyRend can be rectangular or elliptical. You can create them with `pyrend.overlay.shape` with default parameters like so:
+Shapes in PyRend can be rectangular or elliptical. You can create them with ``pyrend.overlay.shape`` with default parameters like so:
 
 .. code-block:: python
 
@@ -215,7 +215,7 @@ Video methods
 
     myVideo.seek(seconds)
 
-Skip to a certain time length into the video. `seconds` must be an integer. Using 0 will restart the video.
+Skip to a certain time length into the video. ``seconds`` must be an integer. Using 0 will restart the video.
 
 .. code-block:: python
 
@@ -250,7 +250,7 @@ This script creates a video that immidiately plays and closes when finished.
 
 .. note::
 
-    You can use the VideoItem's proptery `frames` to get a list of all loaded frames in the video or `frame_index` to get the current frame.
+    You can use the VideoItem's proptery ``frames`` to get a list of all loaded frames in the video or ``frame_index`` to get the current frame.
 
     Example: `print(f"The video is on frame {myVideo.frame_index}")`
 
@@ -283,7 +283,7 @@ The possiblities of PyRend greatly expand when you can modify items during the l
 Editing
 -------
 
-Editing an item is the easiest way to modify it. `edit()` is a method on all items that allows you to change the properties. As different items have some different properties, the edit method changes slightly between item types. This is an example of the edit method on a ShapeItem:
+Editing an item is the easiest way to modify it. ``edit()`` is a method on all items that allows you to change the properties. As different items have some different properties, the edit method changes slightly between item types. This is an example of the edit method on a ShapeItem:
 
 .. code-block:: python
 
@@ -552,8 +552,8 @@ You can return the width and height of an item using:
 
 .. code-block:: python
 
-    w = Item.width() --> int
-    h = Item.height() --> int
+    w = Item.width() -> int
+    h = Item.height() -> int
 
 Note that in PyRend 0.1.31 this does not take into account changed aspect ration when keep_aspect_ratio is enabled, causing width and height to be unreliable. This is planned to be fixed in PyRend 0.1.4
 
@@ -561,7 +561,7 @@ You can return the width or height of the screen using the ``screen_size`` metho
 
 .. code-block:: python
 
-    w, h = pyrend.overlay.screen_size() --> tuple
+    w, h = pyrend.overlay.screen_size() -> tuple
 
 Both variables in the tuple will be integers. 
 
@@ -572,7 +572,7 @@ You can detect a collisions between two objects using:
 
 .. code-block:: python
 
-    Item1.get_collision(Item2) --> bool
+    Item1.get_collision(Item2) -> bool
 
 This will detect if any point of Item1 intersects with Item2. Collision does **not** take into account rotation. Collision detection for ellipses or text will use a full square hitbox, rather than what is visible. 
 
@@ -583,7 +583,58 @@ The PyRend overlay has a range of features relating to managing the mouse and in
 
 .. code-block:: python
 
-    pyrend.overlay.get_mouse_pos() --> tuple
+    pyrend.overlay.get_mouse_pos() -> tuple
 
 Returns a tuple with two integers, x and y, with the current position of the mouse. 
+You can detect if the mouse is hovering over an object using ``is_held()``
 
+.. code-block:: python
+
+    Item.is_mouse_hovering() -> bool
+
+This will return `True` if the mouse is currently touching the item, accounting for rotation. You can combine this with using ``input.is_key_down`` to detect if the mouse is also clicking, to then axecute an action. This could even be used for things such as drag and drop mechanics.
+
+Using this, we could adapt the circle creation script from earlier to allow deleting certain circles. Now, you can press space to create a circle in a random position, and click it to remove it. Note that this code is not optimised.
+
+.. code-block:: python
+
+    import pyrend
+    import random    # Use random to create circles in random positions
+    
+    circles = []        # Store a list of all existing circles
+    spacedown = False         
+    
+    
+    def my_update_loop():
+        global spacedown
+    
+        if pyrend.input.is_key_down("LBUTTON"):
+            for c in circles:
+                if c.is_mouse_hovering():  # Detect if the mouse is hovering and clicked
+                    c.delete()   # Delete the circle
+    
+        if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+            pyrend.close()
+    
+        if pyrend.input.is_key_down("SPACE") and not spacedown:     # Only execute once after space is pressed
+            spacedown = True
+            circle = pyrend.overlay.shape(        # Create a new circle at a random position
+                True,
+                (random.randint(0, 1950), random.randint(0, 1020)),
+                (150, 150)
+            )
+            circles.append(circle)
+        elif not pyrend.input.is_key_down("SPACE"):    # Detect if the space key has already been down for a frame
+            spacedown = False
+    
+    pyrend.start(my_update_loop)
+
+If you want to learn more about keypresses, read the `input submodule <https://pyrend.readthedocs.io/en/latest/input.html>`_.
+
+By default, PyRend overlays are clickthrough, meaning they are ghost-like in the sense that the mouse can click straight through it to whatever application is behind. You can change this with:
+
+.. code-block:: python
+
+    pyrend.overlay.set_clickthrough(enabled=False)
+
+Now by setting this with `False`, the overlay will **not** be clickthrough, and you will no longer be able to click behind where an item is. You will still be able to click where there is no items. To get around this, you could create an invisible (0.0 opacity) ShapeItem covering the entire screen.   
