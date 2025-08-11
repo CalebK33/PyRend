@@ -145,7 +145,7 @@ Images
 | **path** (str): Path to the image. Read below for more info.
 | **pos** (tuple): The (`x, y`) position of the top-left corner of the image, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 | **size** (tuple): The (`width, height`) of the image, in pixels.  
-| **opacity** (float): Opacity of the shape from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). 
+| **opacity** (float): Opacity of the shape from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). Can cause more lag.
 | **keep_aspect_ratio** (bool): If true, will automatically resize to remain aspect ratio. Read below for more info.
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
@@ -202,7 +202,7 @@ That video will be loaded and can be later used to create a video item. You can 
 | **base_pos** (tuple): The  (`x, y`) position of the top-left corecer of the video, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 | **size** (tuple): | **size** (tuple): The (`width, height`) of the video, in pixels. If left blank will use video size.
 | **opacity** (float): Opacity of the video from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). Can increase lag.
-| **on_end** (function): Function to be called when the video ends.
+| **on_end** (function): Function to be called when the video ends/loops.
 | **on_end_args** (any): Arguments to be passed to the on_end function. (Slightly buggy)
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 | **keep_aspect_ratio** (bool): If true, will automatically resize to remain aspect ratio, no matter what width/height is specified.
@@ -391,7 +391,11 @@ You can also delete an item using:
 
     myItem.delete(soft=False)
 
-The **soft** parameter is False by default and defines whether the item will be soft or hard deleted. Soft deleted items are still stored in memory but not drawn/processed. This means they are technically recoverable, and your script will be able to handle referencing it after deletion. Hard deletion immediatly erases the item from memory. Hard deleting an item makes it unable to be recovered completely. It is highly reccomended to use hard deletion for deletion of objects in mass, most likely items created in iteration (eg. particles, game enemies).    
+The **soft** parameter is False by default and defines whether the item will be soft or hard deleted. Soft deleted items are still stored in memory but not drawn/processed. This means they are technically recoverable, and your script will be able to handle referencing it after deletion. Hard deletion immediatly erases the item from memory. Hard deleting an item makes it unable to be recovered completely. It is highly reccomended to use hard deletion for deletion of objects in mass, most likely items created in iteration (eg. particles, game enemies).  
+
+.. note::
+
+    Deleting a parent also deletes all of its children. To avoid this, use the ``free()`` method (inverted) on the Item prior to deletion.
 
 Position and Offset
 ===============================
@@ -504,7 +508,7 @@ Items can also be rotated using either ``edit()`` or `rotate`. Items rotate arou
 Custom rotation points
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Since rotation is based around parent rotation if in a heirachy, this can be taken advantage of to create custom rotation points using `PointItems <#points>`_. You can set the PointItem as a parent of a shape and rotate it to have a custom rotation point. It's rotation point will then be essentially set to it's parent offset (See: `Hierachy <#heirachy>`_). 
+Since rotation is based around parent rotation if in a heirachy, this can be taken advantage of to create custom rotation points using `PointItems <#points>`_. You can set the PointItem as a parent of a shape and rotate it to have a custom rotation point. It's rotation point will then be essentially set to it's parent offset (See: `Hierachy <#heirachy>`_). This results in children being able to orbit parents. 
 
 This script will create a rectangle with a custom rotation point just left of it's center, and spins it to demonstrate:
 
