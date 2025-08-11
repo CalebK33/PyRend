@@ -468,10 +468,6 @@ You can also use ``offset`` to align an item to the center of its position. You 
 
 This will set it's offset to half of its width and height, essentially centering it on the screen. You can specify whether just just center it on the x or y plane by setting the variables you want to align to True, which they both are by default. Note that when aligned to the center, all previous offset will be cleared. If you want previous offset to be saved after alignment, you will have to store it in a variable **before** alignment and apply it afterwards.
 
-.. warning::
-
-    In PyRend 0.1.31, PyRend uses the width and height methods to calculate center. These are currently outdated and use the specified aspect ratio rather than the         modified aspect ration when ``keep_aspect_ratio`` is enabled. This is planned to be fixed in PyRend 0.1.4.
-
 Heirachy
 --------
 
@@ -558,8 +554,6 @@ You can return the width and height of an item using:
 
     w = Item.width() -> int
     h = Item.height() -> int
-
-Note that in PyRend 0.1.31 this does not take into account changed aspect ration when keep_aspect_ratio is enabled, causing width and height to be unreliable. This is planned to be fixed in PyRend 0.1.4
 
 You can return the width or height of the screen using the ``screen_size`` method:
 
