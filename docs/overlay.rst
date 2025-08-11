@@ -608,9 +608,9 @@ Using this, we could adapt the circle creation script from earlier to allow dele
     def my_update_loop():
         global spacedown
     
-        if pyrend.input.is_key_down("LBUTTON"):
+        if pyrend.input.is_key_down("LBUTTON"): # Detect if mouse is clicked
             for c in circles:
-                if c.is_mouse_hovering():  # Detect if the mouse is hovering and clicked
+                if c.is_mouse_hovering():  # Detect if the mouse is hovering for each circle
                     c.delete()   # Delete the circle
     
         if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
@@ -637,4 +637,4 @@ By default, PyRend overlays are clickthrough, meaning they are ghost-like in the
 
     pyrend.overlay.set_clickthrough(enabled=False)
 
-Now by setting this with `False`, the overlay will **not** be clickthrough, and you will no longer be able to click behind where an item is. You will still be able to click where there is no items. To get around this, you could create an invisible (0.0 opacity) ShapeItem covering the entire screen.   
+Now by setting this with `False`, the overlay will **not** be clickthrough, and you will no longer be able to click behind where an item is. You will still be able to click where there is no items. To get around this, you could create an invisible (0.0 opacity) ShapeItem covering the entire screen. Partially or even fully transparent items still detect clicks and cannot be clicked through if clickthrough is disabled.  
