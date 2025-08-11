@@ -91,6 +91,7 @@ Text
         size=(48),
         color=(255, 255, 255),
         font="Arial",
+        opacity=1,
         z_index=0
     )
 
@@ -99,6 +100,7 @@ Text
 | **size** (tuple): The (`width, height`) of the text, in pixels.  
 | **color** (tuple): The RGB color of the text, e.g. (`255, 0, 0`) for red. See: `RGB vs hex codes <https://pyrend.readthedocs.io/en/latest/index.html#hex-vs-rgb-codes>`_ 
 | **font** (str): The font to write in. See: Custom Fonts (below)
+| **opacity** (float): Opacity of the shape from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). 
 | **z_index** (int): Determines draw order. Items with a higher z_index appear above those with lower values.  
 
 Custom Fonts
