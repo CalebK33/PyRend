@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyrend"
-version = "0.1.0"
+version = "0.1.40"
 description = "Audio/video overlay, recording, input automation, and window/file management utilities"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -22,7 +22,8 @@ dependencies = [
   "pygetwindow>=0.0.9",
   "requests>=2.28",
   "Pillow>=9.0",
-  "mss>=7.0"
+  "mss>=7.0",
+  "pywin32>=311"
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
