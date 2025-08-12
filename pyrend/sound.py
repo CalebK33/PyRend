@@ -15,29 +15,21 @@ from moviepy import VideoFileClip
 
 class Recording:
     def __init__(self, time, callback=None, args=(), kwargs=None):
-        """
-        time: length in seconds to record
-        callback: function to call when finished; will receive the final Sound object
-        """
         self.time = time
         self.fs = 44100
         self.callback = callback
         self.callback_args = args
         self.callback_kwargs = kwargs or {}
         
-        # Total frames we want to capture
         self._total_frames = int(self.time * self.fs)
         self._frames_recorded = 0
         
-        # Thread-safe buffer for incoming chunks
         self._buffer = []
         self._lock = threading.Lock()
         
-        # State flags
         self._paused = True
         self.finished = threading.Event()
         
-        # Prepare the input stream (but don't start it yet)
         self._stream = sd.InputStream(
             samplerate=self.fs,
             channels=2,
