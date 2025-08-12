@@ -369,7 +369,7 @@ Or this script which will create a circle in a random loction on the screen ever
 
     ``myItem.opacity += 0.2`` 
 
-    However it is more reccomended to use edit for properties such as position which have multiple backend variables that cannot be manually changed.  
+    However, it is only reccomended to use this for things like opacity, colour or size. Since rotation and position are cached to save memory, you **must** only           change these with ``edit()``, ``move()`` or ``rotate()`` 
 
 You can also move an item using:
 
