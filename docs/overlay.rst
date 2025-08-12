@@ -587,6 +587,10 @@ You can detect a collisions between two objects using:
 
 This will detect if any point of Item1 intersects with Item2. Collision does **not** take into account rotation. Collision detection for ellipses or text will use a full square hitbox, rather than what is visible. 
 
+.. note::
+
+    Points calculate collision in the say way the mouse hover function does. This means it `does` account for rotation and is very reliable. This method of collision       detection will automatically be used whenever you use the get collision method either from or using a PointItem.
+
 Mouse
 -----
 
