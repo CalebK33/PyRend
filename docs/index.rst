@@ -69,8 +69,11 @@ To confirm PyRend was installed successfully:
 
 If the command returns PyRend’s details, the installation was successful.
 
-.. note::
-   PyRend's dependencies include: librosa, moviepy, mss, numpy, opencv-python, Pillow, pygetwindow, PyQt5, pywin32, requests, sounddevice, and soundfile.
+PyRend's dependencies include: librosa, moviepy, mss, numpy, opencv-python, Pillow, pygetwindow, PyQt5, pywin32, requests, sounddevice, and soundfile.
+
+.. warning:: 
+
+   PyRend is still under development, meaning it is **highly** reccomended that you install the latest version, as older versions will likely be buggy or unstable.
 
 PyRend Basics & Update Loop
 ---------------------------
