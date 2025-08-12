@@ -365,7 +365,7 @@ Or this script which will create a circle in a random loction on the screen ever
 
 .. note::
 
-    Technically you can also manually change the properties of an item siply by doing:
+    Technically you can also manually change the properties of an item simply by doing:
 
     ``myItem.opacity += 0.2`` 
 
@@ -431,9 +431,7 @@ Offset **is** taken into account when detecting collisions, calculating `pos`, a
 
 This is the coordinate used when drawing the item on screen, checking collisions, and tracking mouse interaction.
 
-**x** and **y** are stored internally for convenience but are calculated once in the constructor and not automatically updated if other properties change. They are not as reliable as `pos` or ``get_absolute_pos()`` and generally should not be used.
-
-**abs_pos** is another snapshot-style attribute computed in the constructor. Like `x` and `y`, it's based on the state at initialization and not updated dynamically. Instead, always use ``get_absolute_pos()`` when you want live, correct information.
+**original_pos** is a snapshot style attribute storing the original position when the item was created. Avoid modifying it and generally shouldn't be used much.
 
 Summary 
 -------
@@ -460,12 +458,9 @@ Summary
    * - ``pos``
      - Final visual position (absolute + offset)
      - Read-only (computed dynamically)
-   * - ``x``, ``y``
-     - Cached screen position at initialization
-     - Not updated after; avoid modifying
-   * - ``abs_pos``
-     - Cached absolute position snapshot (at creation)
-     - Not updated; avoid modifying
+   * - ``original_pos``
+     - Cached absolute position snapshot (at creation). Not updated.
+     - Avoid modifying, but `can` be modified manually
    * - ``rotation``
      - Rotation in degrees (cumulative via parents)
      - Use ``rotate(degrees)`` or set directly
