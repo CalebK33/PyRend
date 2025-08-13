@@ -380,77 +380,70 @@ class _ImageItem(BaseItem):
 
 class _VideoItem(BaseItem):
     def __init__(self, overlay, video_data_or_path, base_pos=(0, 0), size=None, opacity=1.0,
-                 on_end=None, on_end_args=(), z_index=0, keep_aspect_ratio=True,
+                 on_end=None, on_end_args=(), fps = 33, z_index=0, keep_aspect_ratio=True, 
                  loop=True, smooth=False):
         super().__init__(overlay, base_pos, z_index)
         self.smooth = smooth
         self.keep_aspect_ratio = keep_aspect_ratio
-        self.paused = None
+        self.paused = False
         self.opacity = float(opacity)
         self.on_end = on_end
         self.loop = loop
         self.on_end_args = on_end_args
         self.frame_index = 0
-        self.path = video_data_or_path
         self._elapsed = QtCore.QElapsedTimer()
         self._elapsed.start()
         self.last_frame_time = 0
         self._timer = QtCore.QTimer()
         self._timer.timeout.connect(self._check_and_advance_frame)
-        self._timer.start(1)
+        self.frame_interval = fps
+        self._timer.start(self.frame_interval)  
+
         self._loading = False
         self.frames = []
-        self.frame_interval = 33
         self._done = False
 
         if isinstance(video_data_or_path, str):
-            if video_data_or_path in _loaded_videos and _loaded_videos[video_data_or_path] is not None:
-                cached = _loaded_videos[video_data_or_path]
-                self.frames = cached['frames']
-                self.frame_interval = cached['interval']
-                self._done = cached.get('done', True)
-                self._loading = not self._done
+            path = os.path.abspath(video_data_or_path)
+            print(f"Loading video synchronously: {path}")
 
-                if self.frames:
-                    w, h = self.frames[0].width(), self.frames[0].height()
-                    self.size = self._calc_size(size, w, h)
+            cap = cv2.VideoCapture(path)
+            if not cap.isOpened():
+                print(f"Failed to open video: {path}")
+                self._done = True  # mark done to avoid hanging
+                self.frames = []
+                self.frame_interval = 33
+                self.size = (0, 0)
+                return
 
+            fps = cap.get(cv2.CAP_PROP_FPS)
+            if not fps or fps <= 1:
+                fps = 30
+            self.frame_interval = int(1000 / fps)
+
+            frames = []
+            w = h = 0
+            while True:
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+                h, w, _ = frame.shape
+                qimage = QtGui.QImage(frame.data, w, h, QtGui.QImage.Format_RGBA8888).copy()
+                frames.append(qimage)
+            cap.release()
+
+            if _ensure_overlay().debug:
+                print(f"Loaded {len(frames)} frames")
+
+            self.frames = frames
+            self._done = True
+            self._loading = False
+
+            if self.frames:
+                self.size = self._calc_size(size, w, h)
             else:
-                frames = []
-                _loaded_videos[video_data_or_path] = {'frames': frames, 'interval': 33, 'done': False}
-                self.frames = frames
-                self._loading = True
-
-                cap = cv2.VideoCapture(video_data_or_path)
-                if cap.isOpened():
-                    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                    self.size = self._calc_size(size, w, h)
-                cap.release()
-
-                def load_and_update():
-                    cap = cv2.VideoCapture(video_data_or_path)
-                    if not cap.isOpened():
-                        _loaded_videos[video_data_or_path] = None
-                        return
-                    fps = cap.get(cv2.CAP_PROP_FPS)
-                    if not fps or fps <= 1:
-                        fps = 30
-                    interval = int(1000 / fps)
-                    _loaded_videos[video_data_or_path]['interval'] = interval
-                    while True:
-                        ret, frame = cap.read()
-                        if not ret:
-                            break
-                        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
-                        h, w, _ = frame.shape
-                        qimage = QtGui.QImage(frame.data, w, h, QtGui.QImage.Format_RGBA8888).copy()
-                        frames.append(qimage)
-                    cap.release()
-                    _loaded_videos[video_data_or_path]['done'] = True
-                    self._done = True
-                    self._loading = False
-                threading.Thread(target=load_and_update, daemon=True).start()
+                self.size = (0, 0)
 
         else:
             self.frames = video_data_or_path[0]
@@ -460,6 +453,8 @@ class _VideoItem(BaseItem):
             if self.frames:
                 w, h = self.frames[0].width(), self.frames[0].height()
                 self.size = self._calc_size(size, w, h)
+            else:
+                self.size = (0, 0)
 
     def _calc_size(self, size, native_w, native_h):
         if size is None:
