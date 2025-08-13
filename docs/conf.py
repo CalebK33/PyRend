@@ -6,7 +6,7 @@ project = "pyrend"
 html_title = "PyRend 0.1.42 Documentation"
 html_logo = "_static/favicon.png"
 author = "CalebK33"
-release = "0.1.42"
+release = "0.1.43"
 
 extensions = [
     "sphinx.ext.autodoc",
