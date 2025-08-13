@@ -176,6 +176,8 @@ By enabling debug mode, all points will apear on top of everything as small red 
 
 **enable** (bool): Whether to turn debug mode on or off.
 
+Debug mode also enables the logging of some useful video information, such as displaying when a video has started loading asyncronously and when all frames finish loading. 
+
 Videos
 ------
 
