@@ -6,6 +6,8 @@ Overview
 
 The PyRend sound submodule allows you to play, modify, record and write sound. It uses two main object types, ``Sound()`` and ```Recording()``. 
 
+This submodule documentation assumes you have read the `introduction <https://pyrend.readthedocs.io/en/latest/index.html>`_ and understand how to create a basic PyRend loop.
+
 Sound Objects
 =============
 
@@ -18,7 +20,9 @@ Sound objects are general objects containing everything in PyRend related to sou
 | **path** (str): The relative or absolute path to your sound file. Read below for supported file types. 
 | **volume** (float): The decimal value for the volume to play the sound at. 1.0 is normal.
 
-The `path` parameter fully supports the follow formats: .mp3, .ogg and .wav. More sound file types may work, but may not be fully supported for all functions. 
+The `path` parameter fully supports the follow formats: .mp3, .ogg .wav, and .mp4. More sound file types may work, but may not be fully supported for all functions. 
+
+That's right; you can extract audio from an mp4 file to turn into a Sound object.
 
 You can also create a sound object from sound data (NumPy Arrays) and a samplerate. To learn more, read the `soundfile documentation <https://python-soundfile.readthedocs.io/en/>`_
 
@@ -69,6 +73,26 @@ Skip to a certain amount of seconds in the video. As of PyRend 0.1.45, it can be
 
 You can combine ``get_playback_time()`` with ``seek()`` and a stored time, to make a rough pause and resume feature. 
 
+Example
+~~~~~~~
+
+..code-block:: python
+
+  import pyrend
+  
+  mySound = pyrend.sound.createsound('sound.mp3', 1.0)    # Create the sound object
+  mySound.seek(1)     # Start the playback a second in
+  mySound.play()      # Play the sound
+  
+  def update():
+      if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+          pyrend.close()
+  
+      if pyrend.input.is_key_down("Space"):   # If space is pressed, stop playback
+          mySound.stop()
+  
+  pyrend.start(update)
+
 Audio manipulation
 ------------------
 
@@ -84,5 +108,22 @@ Shifting a sounds pitch takes a while, however it will not pause your script or 
 
 .. warning:: 
 
-  Pitch shifting large audio files can be intensive on the CPU
+  Pitch shifting large audio files can be intensive on the CPU, so use carefully. 
 
+.. code-block:: python
+
+  mySound.set_volume(volume)
+
+Sets the volume to the specified. You can also just change the `volume` attribute directly to have the same effect.
+
+You can also save a sound object to a .wav file using ``write()``
+
+.. code-block:: python
+
+  mySound.write(path="sound.wav")
+
+**path** (str): The path to save the audio file under. This `must` end in .wav. 
+
+.. note::
+
+  Writing a sound object to a file saves its pitch.
