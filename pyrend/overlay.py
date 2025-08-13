@@ -405,7 +405,8 @@ class _VideoItem(BaseItem):
 
         if isinstance(video_data_or_path, str):
             path = os.path.abspath(video_data_or_path)
-            print(f"Loading video synchronously: {path}")
+            if _ensure_overlay().debug:
+                print(f"Debug Mode: Loading video synchronously from {path}")
 
             cap = cv2.VideoCapture(path)
             if not cap.isOpened():
@@ -434,7 +435,7 @@ class _VideoItem(BaseItem):
             cap.release()
 
             if _ensure_overlay().debug:
-                print(f"Loaded {len(frames)} frames")
+                print(f"Debug Mode: Loaded {len(frames)} frames")
 
             self.frames = frames
             self._done = True
