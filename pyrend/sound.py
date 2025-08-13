@@ -240,6 +240,12 @@ class Sound:
         if not self.playing:
             return 0
         return self._current_index / self.samplerate
+    
+    def seek(self, seconds=0):
+        new_index = int(seconds * self.samplerate)
+        new_index = max(0, min(new_index, len(self._current_data) - 1))  # clamp
+        with self._pitch_lock:
+            self._current_index = new_index
 
     def wait(self):
         if self.thread:
