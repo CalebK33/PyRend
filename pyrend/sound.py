@@ -257,8 +257,8 @@ class Sound:
 def createsound(path, volume=1.0) -> Sound:
     return Sound(path, volume)
 
-def array(data, volume) -> Sound:
-    return Sound(volume=volume, data=data)
+def array(data, samplerate, volume=1.0) -> Sound:
+    return Sound(volume=volume, data=data, samplerate=samplerate)
 
 def recording(time, callback=None, args=(), kwargs=None) -> Recording:
     return Recording(time, callback=callback, args=args, kwargs=kwargs)
