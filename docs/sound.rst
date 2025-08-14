@@ -76,7 +76,7 @@ You can combine ``get_playback_time()`` with ``seek()`` and a stored time, to ma
 Example
 ~~~~~~~
 
-..code-block:: python
+.. code-block:: python
 
   import pyrend
   
@@ -127,3 +127,30 @@ You can also save a sound object to a .wav file using ``write()``
 .. note::
 
   Writing a sound object to a file saves its pitch.
+
+Recording
+=========
+
+The PyRend sound submodule allows you to record audio input from the mic. To do this, you need to create a Recording object.
+
+.. code-block:: python
+
+  myRecording = pyrend.sound.recording(time, callback=None, args=())
+
+| time (float): Number of seconds to record audio for.
+| callback (func): Function to call when the object has finished recording.
+| args (tuple): Arguments to give to function command when object finishes recording.  
+
+When a recording object has finished recording, it will automatically transform into a sound object. This means you could immediately play it, pitch change it, or write it to a file. Due to this change in object, it could lead to tricky scenarios where your script will crash trying to execute a not yet, or no longer existing method. You could get around this by using pythons `try` statement, or by using the built in `isinstance <https://docs.python.org/3/library/functions.html#isinstance>`_ function like this:
+
+.. code-block:: python
+
+  myRecording = pyrend.sound.recording(3, callback=None, args=())
+  myRecording.start()
+
+  while True:
+    if isinstance(myRecording, pyrend.sound.Sound):
+      print("Recording finished!")
+
+This will be used in a  n b
+
