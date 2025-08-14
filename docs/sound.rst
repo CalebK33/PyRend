@@ -85,7 +85,7 @@ Example
   mySound.play()      # Play the sound
   
   def update():
-      if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+      if pyrend.input.command("Q", False, alt=True):
           pyrend.close()
   
       if pyrend.input.is_key_down("Space"):   # If space is pressed, stop playback
@@ -137,9 +137,9 @@ The PyRend sound submodule allows you to record audio input from the mic. To do 
 
   myRecording = pyrend.sound.recording(time, callback=None, args=())
 
-| time (float): Number of seconds to record audio for.
-| callback (func): Function to call when the object has finished recording.
-| args (tuple): Arguments to give to function command when object finishes recording.  
+| **time** (float): Number of seconds to record audio for.
+| **callback** (func): Function to call when the object has finished recording.
+| **args** (tuple): Arguments to give to function command when object finishes recording.  
 
 When a recording object has finished recording, it will automatically transform into a sound object. This means you could immediately play it, pitch change it, or write it to a file. Due to this change in object, it could lead to tricky scenarios where your script will crash trying to execute a not yet, or no longer existing method. You could get around this by using pythons `try` statement, or by using the built in `isinstance <https://docs.python.org/3/library/functions.html#isinstance>`_ function like this:
 
@@ -152,5 +152,36 @@ When a recording object has finished recording, it will automatically transform 
     if isinstance(myRecording, pyrend.sound.Sound):
       print("Recording finished!")
 
-This will be used in a  n b
+This will be used in a proper loop later in the example.
 
+Methods
+-------
+
+Creating a recording will not immediately start it. To start recording audio input, use:
+
+.. code-block:: python
+
+  myRecording.start()
+
+This will start the recording for the duration specified on creation. When playing it does not pause your script/loop. While running you can use:
+
+.. code-block:: python
+
+  myRecording.pause()
+
+...To pause the recording. Then you can use:
+
+.. code-block:: 
+
+  myRecording.resume()
+
+...To resume it. 
+
+Usage
+-----
+
+The following script creates a five second recording, starts it and waits until it's finished and plays when the space key is pressed. To read about key presses, take a look at the `input submodule <https://pyrend.readthedocs.io/en/latest/input.html>`_
+
+.. code-block:: python
+
+  
