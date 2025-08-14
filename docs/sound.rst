@@ -186,38 +186,80 @@ The following script creates a five second recording, starts it and waits until 
 
   import pyrend
   
-  myRecording = pyrend.sound.recording(5, callback=None, args=())
-  myRecording.start()
+  myRecording = pyrend.sound.recording(5, callback=None, args=()) 
+  myRecording.start()         # Create and start a five second recording
   
   while not isinstance(myRecording, pyrend.sound.Sound):
-      pass
+      pass        # Wait until it has finished
   
-  space_pressed = False
+  space_pressed = False    # Create global variables to check if keys are pressed
   bracket_pressed = False
   
   def update():
-      global alt_q_pressed, space_pressed, bracket_pressed
+      global alt_q_pressed, space_pressed, bracket_pressed    # Get global variables
   
       if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
-          pyrend.close()
+          pyrend.close()      # Safety quit keybind
   
       if pyrend.input.is_key_down("SPACE"):
           if not space_pressed: 
               if myRecording.playing:
-                  myRecording.stop()
+                  myRecording.stop()  # If space is pressed, stop or play the recording
               else:
                   myRecording.play()
-              space_pressed = True
+              space_pressed = True    # Set global variable to True to avoid repetitive execution
       else:
           space_pressed = False  
   
       if pyrend.input.is_key_down("["):
           if not bracket_pressed:  
-              myRecording.write("sound.wav")
+              myRecording.write("sound.wav")  # If left bracket is pressed, write the audio to file.
               bracket_pressed = True
       else:
           bracket_pressed = False  
   
+  pyrend.start(update)    # Start the update loop
+
+
+A lot of this code is clutter as the ``is_key_down`` method will execute every frame. Obviously we do not want the space key to pause or play the audio every frame, so we need to account for this.  
+
+Examples
+========
+
+Below are some scripts that combine everything documented in this documentation page.
+
+The following script plays some music, and when the space key is pressed, gently fades it out to a stop:
+
+.. code-block:: python
+
+  import pyrend
+
+  music = pyrend.sound.createsound('music/track1.ogg')
+  music.play()    # Create and start music
+  playing = True
+  
+  def update():
+      global playing
+  
+      # Safety quit
+      if pyrend.input.is_key_down("ALT") and pyrend.input.is_key_down("Q"):
+          pyrend.close()
+  
+      # Pause trigger
+      if playing and pyrend.input.is_key_down("SPACE"):
+          playing = False
+  
+      # Fade out
+      if not playing:
+          if music.volume > 0:
+              music.volume = max(0, music.volume - 0.01)
+          else:
+              music.stop()
+
   pyrend.start(update)
 
-A lot of tyou his code is clutter as the ``is_key_down`` method will execute every frame. Obviously we do not want the space key to pause or play the audio every frame, so we need to account for this.  
+This script records five seconds of audio input, then shifts its pitch up three steps and saves it to a file:
+
+.. code-block:: python
+
+  
