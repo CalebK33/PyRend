@@ -116,6 +116,13 @@ Shifting a sounds pitch takes a while, however it will not pause your script or 
 
 Sets the volume to the specified. You can also just change the `volume` attribute directly to have the same effect.
 
+You can use the ``shifting`` attribute to detect whether it is currently working to shift a sound. This can be used to detect when a sound has finished shifting. This code will wait until sound has finished shifting before continuing:
+
+.. code-block:: python
+
+  while mySound.shifting:
+    pass
+
 You can also save a sound object to a .wav file using ``write()``
 
 .. code-block:: python
@@ -264,11 +271,11 @@ This script takes a .mp4 file and shifts its audio by one octave, then plays and
 
   import pyrend
   
-  sound = pyrend.sound.createsound('jump.mp4') 
-  sound.set_pitch(12)
+  sound = pyrend.sound.createsound('jump.mp4') # Create sound from mp4
+  sound.set_pitch(12)  # Pitch sound up by one octave
   
   while sound.shifting:
-      pass
+      pass  # Wait until pitch shifting has finished
   
-  sound.play()
-  sound.write('pitched_sound.wav')
+  sound.play()  # Play sound
+  sound.write('pitched_sound.wav')  # Save it to file 
