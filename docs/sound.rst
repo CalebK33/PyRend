@@ -4,7 +4,7 @@ Sound
 Overview
 --------
 
-The PyRend sound submodule allows you to play, modify, record and write sound. It uses two main object types, ``Sound()`` and ```Recording()``. 
+The PyRend sound submodule allows you to play, modify, record and write sound. It uses two main object types, ``Sound()`` and ``Recording()``. 
 
 This submodule documentation assumes you have read the `introduction <https://pyrend.readthedocs.io/en/latest/index.html>`_ and understand how to create a basic PyRend loop.
 
@@ -258,8 +258,17 @@ The following script plays some music, and when the space key is pressed, gently
 
   pyrend.start(update)
 
-This script records five seconds of audio input, then shifts its pitch up three steps and saves it to a file:
+This script takes a .mp4 file and shifts its audio by one octave, then plays and saves it:
 
 .. code-block:: python
 
+  import pyrend
   
+  sound = pyrend.sound.createsound('jump.mp4') 
+  sound.set_pitch(12)
+  
+  while sound.shifting:
+      pass
+  
+  sound.play()
+  sound.write('pitched_sound.wav')
