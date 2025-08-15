@@ -271,7 +271,7 @@ This script takes a .mp4 file and shifts its audio by one octave, then plays and
 
   import pyrend
   
-  sound = pyrend.sound.createsound('jump.mp4') # Create sound from mp4
+  sound = pyrend.sound.createsound('video.mp4') # Create sound from mp4
   sound.set_pitch(12)  # Pitch sound up by one octave
   
   while sound.shifting:
