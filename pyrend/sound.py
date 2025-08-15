@@ -20,68 +20,70 @@ class Recording:
         self.callback = callback
         self.callback_args = args
         self.callback_kwargs = kwargs or {}
-        
+
         self._total_frames = int(self.time * self.fs)
         self._frames_recorded = 0
-        
-        self._buffer = []
+
+        self._buffer = np.zeros((self._total_frames, 2), dtype=np.float32)
         self._lock = threading.Lock()
-        
+
         self._paused = True
         self.finished = threading.Event()
-        
+
         self._stream = sd.InputStream(
             samplerate=self.fs,
             channels=2,
             callback=self._audio_callback
         )
-    
+
     def __repr__(self):
         return f"<Recording time={self.time}s recorded={self._frames_recorded/self.fs:.2f}s>"
-    
+
     def _audio_callback(self, indata, frames, time_info, status):
-        if self._paused:
-            return
-        
         with self._lock:
-            frames_to_take = min(frames, self._total_frames - self._frames_recorded)
-            if frames_to_take > 0:
-                self._buffer.append(indata[:frames_to_take].copy())
-                self._frames_recorded += frames_to_take
-            
-            if self._frames_recorded >= self._total_frames:
-                self._stream.stop()
-                self._finalize()
-    
-    def _finalize(self):
-        data = np.concatenate(self._buffer, axis=0)
+            if not self._paused:
+                frames_to_take = min(frames, self._total_frames - self._frames_recorded)
+                if frames_to_take > 0:
+                    self._buffer[self._frames_recorded:self._frames_recorded + frames_to_take, :] = indata[:frames_to_take]
+                    self._frames_recorded += frames_to_take
+
+                if self._frames_recorded >= self._total_frames:
+                    self._stream.stop()
+                    self._finalize()
+
+    def _finalize(self):    
+
+        data = self._buffer[:self._frames_recorded].copy()
         samplerate = self.fs
-        
+
         self.finished.set()
-        
+
         self.__class__ = Sound
         self.__init__(data=data, samplerate=samplerate)
-        
+
+
         if self.callback:
             try:
                 self.callback(self, *self.callback_args, **self.callback_kwargs)
             except Exception as e:
                 print(f"[Callback Error] {e}")
-    
+
     def start(self):
         if self._stream.active:
             self._paused = False
         else:
             self._paused = False
             self._stream.start()
-    
+
     def pause(self):
         self._paused = True
-    
+
     def resume(self):
         if not self._stream.active:
             self._stream.start()
         self._paused = False
+
+
 
 class Sound:
     def __init__(self, path=None, volume=1.0, data=None, samplerate=None):
@@ -89,6 +91,7 @@ class Sound:
         self.stream = None
         self.thread = None
         self.playing = False
+        self.shifting = False
         self.rawpath = path
         self.path = path
         self.current_pitch = 0
@@ -168,13 +171,18 @@ class Sound:
             with self._pitch_lock:
                 self._next_data = shifted
                 self._pending_pitch = n_steps
-        except Exception:
-            pass
+                self.data = shifted
+
+        except Exception as e:
+            print(f"Pitch shift error: {e}")
+        finally:
+            self.shifting = False
+
 
     def set_pitch(self, pitch=0):
         if pitch == self.current_pitch:
             return
-            
+        self.shifting = True
         threading.Thread(target=self._apply_pitch_shift, args=(pitch,), daemon=True).start()
 
     def _playback(self, volume=None):
@@ -243,7 +251,7 @@ class Sound:
     
     def seek(self, seconds=0):
         new_index = int(seconds * self.samplerate)
-        new_index = max(0, min(new_index, len(self._current_data) - 1))  # clamp
+        new_index = max(0, min(new_index, len(self._current_data) - 1))  
         with self._pitch_lock:
             self._current_index = new_index
 
@@ -259,6 +267,7 @@ class Sound:
 
     def __del__(self):
         self._cleanup()
+
 
 def createsound(path, volume=1.0) -> Sound:
     return Sound(path, volume)
