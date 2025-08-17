@@ -121,12 +121,9 @@ Key codes
    * - ``'SHIFT'``, ``'CTRL'``, ``'CONTROL'``, ``'ALT'``, ``'PAUSE'``, ``'CAPSLOCK'``
      - Modifier Keys and Lock Keys
      - 0x10, 0x11, 0x11, 0x12, 0x13, 0x14
-   * - ``'ESC'``, ``'SPACE'``, ``'DELETE'``
+   * - ``'ESC'``, ``'SPACE'``, ``'DELETE'``, ``' '`` 
      - Escape, Spacebar, Delete
-     - 0x1B, 0x20, 0x2E
-   * - ``' '`` 
-     - Space (duplicate alias for ``'SPACE'``)
-     - 0x20
+     - 0x1B, 0x20, 0x2E, 0x20
    * - ``'PAGEUP'``, ``'PAGEDOWN'``, ``'END'``, ``'HOME'``, ``'LEFT'``, ``'UP'``, ``'RIGHT'``, ``'DOWN'``
      - Navigation Keys
      - 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28
@@ -142,68 +139,38 @@ Key codes
    * - ``'F1'`` – ``'F12'``
      - Function Keys
      - 0x70–0x7B
-   * - ``'PLUS'``
-     - Plus Key
+   * - ``'PLUS'``, ``'='``
+     - Plus / Equals Key
      - 0xBB
-   * - ``'='``
-     - Equals Key (duplicate alias for ``'PLUS'``)
-     - 0xBB
-   * - ``'MINUS'``
-     - Minus Key
+   * - ``'MINUS'``, ``'-'``
+     - Minus / Hyphen Key
      - 0xBD
-   * - ``'-'``
-     - Hyphen Key (duplicate alias for ``'MINUS'``)
-     - 0xBD
-   * - ``'COMMA'``
+   * - ``'COMMA'``, ``','``
      - Comma Key
      - 0xBC
-   * - ``','``
-     - Comma (duplicate alias for ``'COMMA'``)
-     - 0xBC
-   * - ``'PERIOD'``
+   * - ``'PERIOD'``, ``'.'``
      - Period Key
      - 0xBE
-   * - ``'.'``
-     - Period (duplicate alias for ``'PERIOD'``)
-     - 0xBE
-   * - ``'SLASH'``
+   * - ``'SLASH'``, ``'/'``
      - Forward Slash Key
      - 0xBF
-   * - ``'/'``
-     - Forward Slash (duplicate alias for ``'SLASH'``)
-     - 0xBF
-   * - ``'TILDE'``
-     - Tilde/Backtick Key
+   * - ``'TILDE'``, ``'~'``
+     - Tilde / Backtick Key
      - 0xC0
-   * - ``'~'``
-     - Tilde (duplicate alias for ``'TILDE'``)
-     - 0xC0
-   * - ``'OPENBRACKET'``
+   * - ``'OPENBRACKET'``, ``'['``
      - Left Bracket Key
-     - 0xDB
-   * - ``'['``
-     - Left Bracket (duplicate alias for ``'OPENBRACKET'``)
      - 0xDB
    * - ``'BACKSLASH'``
      - Backslash Key
      - 0xDC
-   * - ``'CLOSEBRACKET'``
+   * - ``'CLOSEBRACKET'``, ``']'``
      - Right Bracket Key
      - 0xDD
-   * - ``']'``
-     - Right Bracket (duplicate alias for ``'CLOSEBRACKET'``)
-     - 0xDD
-   * - ``'QUOTE'``
+   * - ``'QUOTE'``, ``"'"``
      - Quote Key
      - 0xDE
-   * - ``"'"``
-     - Quote (duplicate alias for ``'QUOTE'``)
-     - 0xDE
-   * - ``'SEMICOLON'``
+   * - ``'SEMICOLON'``, ``';'``
      - Semicolon Key
-     - 0xBA
-   * - ``';'``
-     - Semicolon (duplicate alias for ``'SEMICOLON'``)
      - 0xBA
    * - ``'VOLUME_MUTE'``, ``'VOLUME_DOWN'``, ``'VOLUME_UP'``, ``'MEDIA_NEXT'``, ``'MEDIA_PREV'``, ``'MEDIA_STOP'``, ``'MEDIA_PLAY_PAUSE'``
      - Media Control Keys
@@ -214,4 +181,5 @@ Key codes
    * - ``'BROWSER_BACK'``, ``'BROWSER_FORWARD'``, ``'BROWSER_REFRESH'``, ``'BROWSER_STOP'``, ``'BROWSER_SEARCH'``, ``'BROWSER_FAVORITES'``, ``'BROWSER_HOME'``
      - Browser Keys
      - 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC
+
 
