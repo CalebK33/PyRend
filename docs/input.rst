@@ -112,42 +112,106 @@ Key codes
    * - Key Name
      - Description
      - VK Hex Code
-   * - LBUTTON, RBUTTON, MBUTTON
+   * - ``'LBUTTON'``, ``'RBUTTON'``, ``'MBUTTON'``
      - Left, Right, and Middle Mouse Buttons
      - 0x01, 0x02, 0x04
-   * - BACK, TAB, ENTER
+   * - ``'BACK'``, ``'TAB'``, ``'ENTER'``
      - Backspace, Tab, Enter/Return
      - 0x08, 0x09, 0x0D
-   * - SHIFT, CTRL, ALT, PAUSE, CAPSLOCK
+   * - ``'SHIFT'``, ``'CTRL'``, ``'CONTROL'``, ``'ALT'``, ``'PAUSE'``, ``'CAPSLOCK'``
      - Modifier Keys and Lock Keys
-     - 0x10, 0x11, 0x12, 0x13, 0x14
-   * - ESC, SPACE, DELETE
+     - 0x10, 0x11, 0x11, 0x12, 0x13, 0x14
+   * - ``'ESC'``, ``'SPACE'``, ``'DELETE'``
      - Escape, Spacebar, Delete
      - 0x1B, 0x20, 0x2E
-   * - PAGEUP, PAGEDOWN, END, HOME, LEFT, UP, RIGHT, DOWN
+   * - ``' '`` 
+     - Space (duplicate alias for ``'SPACE'``)
+     - 0x20
+   * - ``'PAGEUP'``, ``'PAGEDOWN'``, ``'END'``, ``'HOME'``, ``'LEFT'``, ``'UP'``, ``'RIGHT'``, ``'DOWN'``
      - Navigation Keys
      - 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28
-   * - A–Z
+   * - ``'A'`` – ``'Z'``
      - Alphabet Keys
      - 0x41–0x5A
-   * - 0–9
+   * - ``'0'`` – ``'9'``
      - Number Keys
      - 0x30–0x39
-   * - NUMPAD0–NUMPAD9
+   * - ``'NUMPAD0'`` – ``'NUMPAD9'``
      - Numeric Keypad Keys
      - 0x60–0x69
-   * - F1–F12
+   * - ``'F1'`` – ``'F12'``
      - Function Keys
      - 0x70–0x7B
-   * - PLUS/=/-, COMMA, PERIOD, SLASH, TILDE, BRACKETS, BACKSLASH, QUOTE, SEMICOLON
-     - Punctuation & Symbol Keys
-     - 0xBB, 0xBD, 0xBC, 0xBE, 0xBF, 0xC0, 0xDB, 0xDC, 0xDD, 0xDE, 0xBA
-   * - VOLUME_MUTE, VOLUME_DOWN, VOLUME_UP, MEDIA_NEXT, MEDIA_PREV, MEDIA_STOP, MEDIA_PLAY_PAUSE
+   * - ``'PLUS'``
+     - Plus Key
+     - 0xBB
+   * - ``'='``
+     - Equals Key (duplicate alias for ``'PLUS'``)
+     - 0xBB
+   * - ``'MINUS'``
+     - Minus Key
+     - 0xBD
+   * - ``'-'``
+     - Hyphen Key (duplicate alias for ``'MINUS'``)
+     - 0xBD
+   * - ``'COMMA'``
+     - Comma Key
+     - 0xBC
+   * - ``','``
+     - Comma (duplicate alias for ``'COMMA'``)
+     - 0xBC
+   * - ``'PERIOD'``
+     - Period Key
+     - 0xBE
+   * - ``'.'``
+     - Period (duplicate alias for ``'PERIOD'``)
+     - 0xBE
+   * - ``'SLASH'``
+     - Forward Slash Key
+     - 0xBF
+   * - ``'/'``
+     - Forward Slash (duplicate alias for ``'SLASH'``)
+     - 0xBF
+   * - ``'TILDE'``
+     - Tilde/Backtick Key
+     - 0xC0
+   * - ``'~'``
+     - Tilde (duplicate alias for ``'TILDE'``)
+     - 0xC0
+   * - ``'OPENBRACKET'``
+     - Left Bracket Key
+     - 0xDB
+   * - ``'['``
+     - Left Bracket (duplicate alias for ``'OPENBRACKET'``)
+     - 0xDB
+   * - ``'BACKSLASH'``
+     - Backslash Key
+     - 0xDC
+   * - ``'CLOSEBRACKET'``
+     - Right Bracket Key
+     - 0xDD
+   * - ``']'``
+     - Right Bracket (duplicate alias for ``'CLOSEBRACKET'``)
+     - 0xDD
+   * - ``'QUOTE'``
+     - Quote Key
+     - 0xDE
+   * - ``"'"``
+     - Quote (duplicate alias for ``'QUOTE'``)
+     - 0xDE
+   * - ``'SEMICOLON'``
+     - Semicolon Key
+     - 0xBA
+   * - ``';'``
+     - Semicolon (duplicate alias for ``'SEMICOLON'``)
+     - 0xBA
+   * - ``'VOLUME_MUTE'``, ``'VOLUME_DOWN'``, ``'VOLUME_UP'``, ``'MEDIA_NEXT'``, ``'MEDIA_PREV'``, ``'MEDIA_STOP'``, ``'MEDIA_PLAY_PAUSE'``
      - Media Control Keys
      - 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3
-   * - LWIN, RWIN, APPS
+   * - ``'LWIN'``, ``'RWIN'``, ``'APPS'``
      - Windows & Menu Keys
      - 0x5B, 0x5C, 0x5D
-   * - BROWSER_BACK, BROWSER_FORWARD, BROWSER_REFRESH, BROWSER_STOP, BROWSER_SEARCH, BROWSER_FAVORITES, BROWSER_HOME
+   * - ``'BROWSER_BACK'``, ``'BROWSER_FORWARD'``, ``'BROWSER_REFRESH'``, ``'BROWSER_STOP'``, ``'BROWSER_SEARCH'``, ``'BROWSER_FAVORITES'``, ``'BROWSER_HOME'``
      - Browser Keys
      - 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC
+
