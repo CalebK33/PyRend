@@ -47,13 +47,13 @@ This will press the space key once. Note that this will press a single key, so w
 
 To hold a key down for longer, you can use:
 
-..code-block:: python
+.. code-block:: python
 
   pyrend.input.hold('SHIFT')
 
 It will stay down until released with:
 
-..code-block:: python
+.. code-block:: python
 
   pyrend.input.release('SHIFT')
 
@@ -61,7 +61,7 @@ However, it will also release if the user presses that key and releases it manua
 
 To manipulat the keyboard into writing words, you can use:
 
-..code-block:: python
+.. code-block:: python
 
   pyrend.input.write("This will be typed!")
 
@@ -69,7 +69,7 @@ This will use the keyboard to write text to the screen, and it `will` account fo
 
 You can also force the keyboard to execute command keybinds using:
 
-..code-block:: python
+.. code-block:: python
 
   pyrend.input.command(
     key,
@@ -87,7 +87,7 @@ You can also force the keyboard to execute command keybinds using:
 
 For example, this will execute ``CONTROL`` + ``ALT`` + ``TAB``:
 
-..code-block:: python
+.. code-block:: python
 
   pyrend.input.command('TAB', alt=True)
 
