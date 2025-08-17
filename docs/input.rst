@@ -4,7 +4,7 @@ Input
 Overview
 --------
 
-The input submodule of PyRend allows the control over windows keybindings, mouse input, listening for global keypresses and some other window functions. The input submodule is very useful in combination with the overlay, as you can manage keybinds for games or GUIs, manipulate the mouse and more. 
+The input submodule of PyRend allows the control over windows keybindings, mouse input, listening for global keypresses and some other window functions. The input submodule is very useful in combination with the overlay, as you can manage keybinds for games or GUIs, manipulate the mouse and more. No functions require administrator access/run with administrator.
 
 **Features:**
 
@@ -14,6 +14,7 @@ The input submodule of PyRend allows the control over windows keybindings, mouse
 - Execute keyboard commands
 - Manipulate and manage the mouse
 - Alter current application and lock workstation
+- Run without windows permissions/administrator
 
 Keyboard
 ========
@@ -32,6 +33,66 @@ For the **key** parameter, you will need to supply one of the PyRend key codes i
 Control
 -------
 
+There are many functions in PyRend that allow you to manipulate the windows keyboard. The most basic of these is ``press()``. This will press a key for one frame, which will could a single character or press a single key.
+
+.. code-block:: python
+
+  pyrend.input.press("SPACE")
+
+This will press the space key once. Note that this will press a single key, so will not account for uppercase letters or similar keys which require the shift key to be down. You will need to do this yourself, or use the ``write()`` function.
+
+.. note::
+
+  The parameter for ``press()`` and other following functions requires a PyRend key code. For most keys, this is a string with the key (uppercase) to be used, such as     ``'A'`` or ``'='``. To read the full list of all PyRend keycodes, view the table `here <#Key-Codes>`_.
+
+To hold a key down for longer, you can use:
+
+..code-block:: python
+
+  pyrend.input.hold('SHIFT')
+
+It will stay down until released with:
+
+..code-block:: python
+
+  pyrend.input.release('SHIFT')
+
+However, it will also release if the user presses that key and releases it manually. 
+
+To manipulat the keyboard into writing words, you can use:
+
+..code-block:: python
+
+  pyrend.input.write("This will be typed!")
+
+This will use the keyboard to write text to the screen, and it `will` account for the shift key (capital letters or symbols like '!'). Note that this can have unexpected results if the user is holding down keybind buttons such as control, alt or the windows key. To reduce the chance of this causing issues, you could ``release()`` those keys before writing.
+
+You can also force the keyboard to execute command keybinds using:
+
+..code-block:: python
+
+  pyrend.input.command(
+    key,
+    control = True,
+    shift = False,
+    windows = False,
+    alt = False
+  )
+
+| key (str): The PyRend key code to use for the command. View `all key codes table <#Key-Codes>`_.
+| control (bool): Whether to press the control key for the command. True by default.
+| shift (bool): Whether to press the shift key for the command. False by default.
+| windows (bool): Whether to press the windows key for the command. False by default.
+| alt (bool): Whether to press the alt key for the command. False by default.
+
+For example, this will execute ``CONTROL`` + ``ALT`` + ``TAB``:
+
+..code-block:: python
+
+  pyrend.input.command('TAB', alt=True)
+
+Note that some commands will be blocked by windows and cannot be executed, such as ``CONTROL`` + ``ALT`` + ``DEL``.
+
 Other
 =====
 
@@ -43,3 +104,50 @@ Windows
 
 Key codes
 =========
+
+.. list-table:: PyRend Key Codes
+   :header-rows: 1
+   :widths: 30 40 30
+
+   * - Key Name
+     - Description
+     - VK Hex Code
+   * - LBUTTON, RBUTTON, MBUTTON
+     - Left, Right, and Middle Mouse Buttons
+     - 0x01, 0x02, 0x04
+   * - BACK, TAB, ENTER
+     - Backspace, Tab, Enter/Return
+     - 0x08, 0x09, 0x0D
+   * - SHIFT, CTRL, ALT, PAUSE, CAPSLOCK
+     - Modifier Keys and Lock Keys
+     - 0x10, 0x11, 0x12, 0x13, 0x14
+   * - ESC, SPACE, DELETE
+     - Escape, Spacebar, Delete
+     - 0x1B, 0x20, 0x2E
+   * - PAGEUP, PAGEDOWN, END, HOME, LEFT, UP, RIGHT, DOWN
+     - Navigation Keys
+     - 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28
+   * - A–Z
+     - Alphabet Keys
+     - 0x41–0x5A
+   * - 0–9
+     - Number Keys
+     - 0x30–0x39
+   * - NUMPAD0–NUMPAD9
+     - Numeric Keypad Keys
+     - 0x60–0x69
+   * - F1–F12
+     - Function Keys
+     - 0x70–0x7B
+   * - PLUS/=/-, COMMA, PERIOD, SLASH, TILDE, BRACKETS, BACKSLASH, QUOTE, SEMICOLON
+     - Punctuation & Symbol Keys
+     - 0xBB, 0xBD, 0xBC, 0xBE, 0xBF, 0xC0, 0xDB, 0xDC, 0xDD, 0xDE, 0xBA
+   * - VOLUME_MUTE, VOLUME_DOWN, VOLUME_UP, MEDIA_NEXT, MEDIA_PREV, MEDIA_STOP, MEDIA_PLAY_PAUSE
+     - Media Control Keys
+     - 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3
+   * - LWIN, RWIN, APPS
+     - Windows & Menu Keys
+     - 0x5B, 0x5C, 0x5D
+   * - BROWSER_BACK, BROWSER_FORWARD, BROWSER_REFRESH, BROWSER_STOP, BROWSER_SEARCH, BROWSER_FAVORITES, BROWSER_HOME
+     - Browser Keys
+     - 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC
