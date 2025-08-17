@@ -79,11 +79,11 @@ You can also force the keyboard to execute command keybinds using:
     alt = False
   )
 
-| key (str): The PyRend key code to use for the command. View `all key codes table <#Key-Codes>`_.
-| control (bool): Whether to press the control key for the command. True by default.
-| shift (bool): Whether to press the shift key for the command. False by default.
-| windows (bool): Whether to press the windows key for the command. False by default.
-| alt (bool): Whether to press the alt key for the command. False by default.
+| **key** (str): The PyRend key code to use for the command. View `all key codes table <#Key-Codes>`_.
+| **control** (bool): Whether to press the control key for the command. True by default.
+| **shift** (bool): Whether to press the shift key for the command. False by default.
+| **windows** (bool): Whether to press the windows key for the command. False by default.
+| **alt** (bool): Whether to press the alt key for the command. False by default.
 
 For example, this will execute ``CONTROL`` + ``ALT`` + ``TAB``:
 
