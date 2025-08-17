@@ -99,8 +99,58 @@ Other
 Mouse
 -----
 
+The input submodule also has some tools relating to the mouse cursor. 
+
+.. code-block:: python
+
+  pyrend.input.hide_cursor()
+
+And...
+
+.. code-block:: python
+
+  pyrend.input.show_cursor()
+
+Pretty self explanatory, hides and shows the cursor. 
+
+You can also teleport the cursor to a specific location:
+
+.. code-block:: python
+
+  pyrend.input.move_mouse(x, y)
+
+Specify an x and y position, in pixels, to move the cursor to. You can pyrend.r2p here, see `pixel vs relative coordinates. <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_.
+
+If you want to obtain the current position of the mouse, you can use the ``get_mouse_pos()`` function in the overlay submodule, documented `here <https://pyrend.readthedocs.io/en/latest/overlay.html#mouse>`_.
+
 Windows
 -------
+
+The input submodule also has some minimal functions relating to managing windows/applications. For more application control, read about the `files submodule <https://pyrend.readthedocs.io/en/latest/files.html>`_.
+
+.. code-block:: python
+
+  pyrend.input.close_foreground()
+
+Closes the current foreground (currently on top) window. This does not close the hidden overlay application. This function is easier, but not as reliable as ways you can do this in the files submodule.
+
+.. code-block:: python
+
+  pyrend.input.minimize_windows()
+
+Minimises all windows. Again, this is less reliable than what you can do with the files submodule, but is a much easier and simpler function.
+
+.. code-block:: python
+
+  pyrend.input.lock()
+
+Locks the computer.
+
+Don't get any ideas.
+
+Yes, you could.
+
+No, it doesn't require administrative access.
 
 Key codes
 =========
