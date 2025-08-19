@@ -145,9 +145,7 @@ You can also resize windows:
 
   myWindow.resize(x, y)
 
-**x** and **y** are integers of how many pixels wide and tall to resize the window to. Unlike moving a window, the windows resizing animation `will` play when you use resize().
-
-You can move a window to a certain position using:
+**x** and **y** are integers of how many pixels wide and tall to resize the window to. You can move a window to a certain position using:
 
 .. code-block:: python
 
@@ -159,7 +157,7 @@ You can move a window to a certain position using:
 Examples
 --------
 
-Managing windows in PyRend has a lot of possibilities, especially in combination with the other submodules. Add keybinds to controlling windows with the input submodule, add sound effects with the sound submodule or manipulate windows in combination with the overlay submodule. Below are some examples of things you can do with mostly just the files submodule, with minimal other submodule usage.
+Managing windows in PyRend has a lot of possibilities, especially in combination with the other submodules. Add keybinds to controlling windows with the input submodule, add sound effects with the sound submodule or manipulate windows in combination with the overlay submodule. Below are some examples of things you can do with mostly just the files submodule, with minimal other submodule usage. 
 
 Screenshots
 ===========
