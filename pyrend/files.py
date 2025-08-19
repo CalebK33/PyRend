@@ -18,11 +18,14 @@ import mss
 class Window():
     def __init__(self, window):
         self.window = window
-        self.title = window.title
+
+    @property
+    def title(self):
+        return self.window.title
 
     @property
     def isMaximised(self):
-        return self.window.isMaximised
+        return self.window.isMaximized
     @property
     def width(self):
         return self.window.width
