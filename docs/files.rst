@@ -186,5 +186,7 @@ This script allows you to use the arrow keys to resize the window active when th
   
   pyrend.start(update)
 
+Note that these are basic scripts for proof of concept and aren't optimised or bug free.
+
 Screenshots
 ===========
