@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyrend"
-version = "0.1.46"
-description = "Audio/video overlay, recording, input automation, and window/file management utilities"
+version = "0.1.47"
+description = "Audio/video overlay, recording, input automation and window/file management utilities"
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
