@@ -159,5 +159,32 @@ Examples
 
 Managing windows in PyRend has a lot of possibilities, especially in combination with the other submodules. Add keybinds to controlling windows with the input submodule, add sound effects with the sound submodule or manipulate windows in combination with the overlay submodule. Below are some examples of things you can do with mostly just the files submodule, with minimal other submodule usage. 
 
+This script allows you to use the arrow keys to resize the window active when the script is run:
+
+.. code-block:: python
+
+  import pyrend
+  pyrend.init()
+  
+  window = pyrend.files.window(pyrend.files.activeWindow())
+  window.restore()
+  window.move(0, 0)
+  window.resize(pyrend.overlay.screen_size()[0], pyrend.overlay.screen_size()[1])
+  
+  def update():
+      if pyrend.input.is_key_down('ALT') and pyrend.input.is_key_down('Q'):
+          pyrend.close()
+  
+      if pyrend.input.is_key_down('LEFT'):
+          window.resize(window.width - 10, window.height)
+      if pyrend.input.is_key_down('RIGHT'):
+          window.resize(window.width + 10, window.height)
+      if pyrend.input.is_key_down('UP'):
+          window.resize(window.width, window.height - 10)
+      if pyrend.input.is_key_down('DOWN'):
+          window.resize(window.width, window.height + 10)
+  
+  pyrend.start(update)
+
 Screenshots
 ===========
