@@ -167,15 +167,16 @@ This script allows you to use the arrow keys to resize the window active when th
   pyrend.init()
   
   window = pyrend.files.window(pyrend.files.activeWindow())
-  window.restore()
+  window.restore()  # Get the active window and set it up
   window.move(0, 0)
   window.resize(pyrend.overlay.screen_size()[0], pyrend.overlay.screen_size()[1])
   
   def update():
+      # Quit shortcut
       if pyrend.input.is_key_down('ALT') and pyrend.input.is_key_down('Q'):
           pyrend.close()
   
-      if pyrend.input.is_key_down('LEFT'):
+      if pyrend.input.is_key_down('LEFT'):   # If keys pressed, change window size
           window.resize(window.width - 10, window.height)
       if pyrend.input.is_key_down('RIGHT'):
           window.resize(window.width + 10, window.height)
@@ -187,6 +188,55 @@ This script allows you to use the arrow keys to resize the window active when th
   pyrend.start(update)
 
 Note that these are basic scripts for proof of concept and aren't optimised or bug free.
+
+This script adds a hovering effect to non-maximised windows:
+
+.. code-block:: python
+
+  import math
+  import time
+  import random
+  import pyrend
+  import win32gui
+  
+  pyrend.init()
+  
+  # Store base positions + random phase for each window
+  window_data = {}
+  start_time = time.time()
+  
+  def update():
+      global window_data, start_time
+  
+      # Quit shortcut
+      if pyrend.input.is_key_down('ALT') and pyrend.input.is_key_down('Q'):
+          pyrend.close()
+  
+      t = time.time() - start_time
+  
+      for w in pyrend.files.getWindows():
+          window = pyrend.files.window(w)
+  
+          if window.isMaximised:
+              continue  # skip maximized windows
+  
+          hwnd = window.window._hWnd
+  
+          if hwnd not in window_data:     # Calculate how to move the window
+              rect = win32gui.GetWindowRect(hwnd)
+              base_x, base_y = rect[0], rect[1]
+              phase = random.uniform(0, math.pi * 2)   
+              speed = random.uniform(1.6, 2.1)         
+              window_data[hwnd] = (base_x, base_y, phase, speed)
+  
+          base_x, base_y, phase, speed = window_data[hwnd]
+  
+          # Gentle vertical oscillation with random phase + speed
+          offset = int(5 * math.sin(t * speed + phase))
+          window.move(base_x, base_y + offset)
+
+  pyrend.start(update)
+
 
 Screenshots
 ===========
