@@ -240,3 +240,39 @@ This script adds a hovering effect to non-maximised windows:
 
 Screenshots
 ===========
+
+You can take a screenshot using PyRend with:
+
+.. code-block:: python
+
+  myScreen = pyrend.files.grab_screen()
+
+This creates a `Screenshot()` object under `myScreen`. The screenshot object has a few uses. 
+
+.. code-block:: python
+
+  myScreen.write(path)
+
+Writes the image file (png format) to the path specified. Can be relative or absoloute.
+
+.. code-block:: python
+
+  myScreen.retake()
+
+Retakes the photo.
+
+.. code-block:: python
+
+  myScreen.get_bytes()
+
+Returns the image as raw bytes
+
+.. warning:: 
+
+  PyRend uses mss backend, but will it in an inifficient way if you plan on taking lots of photos at once or frequently, likely causing intense lag. To get around        this, you will have to use mss yourself. Read the `intensive use <https://python-mss.readthedocs.io/usage.html#intensive-use>`_ section of the mss documentation for    further information.
+
+You can use the `image` attribute in the screenshot object as a PIL image, for example:
+
+.. code-block:: python
+
+  myScreen.image.show()
