@@ -109,7 +109,7 @@ Using these attributes, you can do things like this:
 
   myWindow = pyrend.files.window(pyrend.files.activeWindow())
   status = "maximised" if myWindow.isMaximised else "not maximised"
-  print(f"{myWindow.title} is {status} and is {myWindow.widtpixels wide!")
+  print(f"{myWindow.title} is {status} and is {myWindow.widtpixels wide}!")
 
 Output:
 
