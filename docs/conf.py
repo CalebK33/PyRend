@@ -19,6 +19,9 @@ templates_path = ["_templates"]
 exclude_patterns = []
 
 html_theme = "furo"
+html_meta = {
+    "google-site-verification": "WJ5tQFHzKxZIWF-XQ3fb7RaSPFMsIk_tYL1sqS__yn4",
+}
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 html_favicon = '_static/favicon.png'
