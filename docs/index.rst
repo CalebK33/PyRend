@@ -1,4 +1,4 @@
-Welcome to PyRend's Documentation
+PyRend Documentation
 =================================
 
 PyRend
