@@ -66,18 +66,6 @@ class Screenshot:
     def write(self, path):
         self.image.save(path)
 
-    def show(self):
-        self.image.show()
-
-    def resize(self, w, h):
-        hwnd = self.window._hWnd
-        if hwnd:
-            rect = win32gui.GetWindowRect(hwnd)
-            x, y = rect[:2]
-            win32gui.MoveWindow(hwnd, x, y, w, h, True)
-        else:
-            print(f"PyRend Error: Cannot resize — invalid window handle.")
-
     def get_bytes(self):
         return self.raw
 
