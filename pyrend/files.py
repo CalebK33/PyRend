@@ -112,7 +112,8 @@ def getWindows():
     return pgw.getAllWindows()
 
 def getWindowTitles():
-    return pgw.getAllTitles()
+    windows = pgw.getAllTitles()
+    return [w for w in windows if w not in ('', 'Program Manager', 'Windows Input Experience')]
 
 def grab_screen():
     return Screenshot(monitor_index=1)
