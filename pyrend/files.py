@@ -32,6 +32,9 @@ class Window():
     @property
     def height(self):
         return self.window.height
+    @property
+    def position(self):
+        return self.window.topleft
 
     def close(self):
         self.window.close()
