@@ -47,6 +47,8 @@ Features
 
 PyRend is only supported for Windows 10 and 11 operating systems. Attemping to run PyRend scripts on MacOS, Linux or an older version of Windows may have unexpected results. 
 
+NOTE: PyRend is NOT a malware module. It was not intended for malicious use and I do not support/endorse the creation and distribution of malicious software creates using it.
+
 Getting Started
 ===============
 
