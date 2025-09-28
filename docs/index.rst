@@ -47,7 +47,7 @@ Features
 
 PyRend is only supported for Windows 10 and 11 operating systems. Attemping to run PyRend scripts on MacOS, Linux or an older version of Windows may have unexpected results. 
 
-NOTE: PyRend is NOT a malware module. It was not intended for malicious use and I do not support/endorse the creation and distribution of malicious software created using it.
+NOTE: PyRend is NOT a malware module. It is not intended for malicious use and I do not support/endorse the creation and distribution of malicious software created using it.
 
 Getting Started
 ===============
@@ -75,7 +75,7 @@ PyRend's dependencies include: librosa, moviepy, mss, numpy, opencv-python, Pill
 
 .. warning:: 
 
-   PyRend is still under development, meaning it is **highly** reccomended that you install the latest version, as older versions will likely be buggy or unstable.
+   PyRend was published during early development, so it is **highly** reccomended that you install the latest version. Older versions will likely be buggy or unstable.
 
 PyRend Basics & Update Loop
 ---------------------------
