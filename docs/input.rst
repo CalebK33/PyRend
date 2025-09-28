@@ -146,11 +146,8 @@ Minimises all windows. Again, this is less reliable than what you can do with th
 
 Locks the computer.
 
-Don't get any ideas.
+Friendly reminder: PyRend is not a malware module!
 
-Yes, you could.
-
-No, it doesn't require administrative access.
 
 Key codes
 =========
