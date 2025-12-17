@@ -214,7 +214,7 @@ That video will be loaded and can be later used to create a video item. You can 
     )
 
 | **video_data_or_path** (str/data): Can be either a string path to a video or a pre-loaded video.
-| **base_pos** (tuple): The  (`x, y`) position of the top-left corecer of the video, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
+| **base_pos** (tuple): The  (`x, y`) position of the top-left corner of the video, in pixels. See: `Pixel vs relative coordinates <https://pyrend.readthedocs.io/en/latest/index.html#pixel-vs-relative-coordinates>`_ 
 | **size** (tuple): | **size** (tuple): The (`width, height`) of the video, in pixels. If left blank will use video size.
 | **opacity** (float): Opacity of the video from 0.0 (`fully transparent`) to 1.0 (`fully opaque`). Can increase lag.
 | **on_end** (function): Function to be called when the video ends/loops.
@@ -415,7 +415,7 @@ The **soft** parameter is False by default and defines whether the item will be 
 Position and Offset
 ===============================
 
-How position, offset, absolute position and base position work in PyRend is one of the more complex aspects of PyRend to understand.
+How position, offset, absolute position and base position work is one of the more complex aspects of PyRend to understand.
 
 **offset** is a tuple property that remains at ``(0, 0)`` until changed using the ``move_offset(x, y)`` method. It adjusts the *visual position* of an item without modifying its base coordinates. An item's offset is taken into account when drawn, so it allows changing where it appears visually **without altering its logical or hierarchical location**.
 
@@ -497,7 +497,7 @@ To remove a parent or children, you can use ``free()``:
 
     Item1.free(inverse=False)
 
-**inverse** (bool): Whether to inverse the effects of the ``free()`` method. When False, the item will become free from any parents, and when False, will free all of it's children. 
+**inverse** (bool): Whether to inverse the effects of the ``free()`` method. When False, the item will become free from any parents, and when True, will free all of it's children. 
 
 Rotating
 --------
