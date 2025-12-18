@@ -330,7 +330,7 @@ Therefore you could also put things in your update function to change them dynam
             pyrend.close()
         if image.opacity > 0:
             image.edit(opacity=image.opacity - 0.01)    # Opacity is a decimal value, therefore descreasing at 
-                                                        # 0.01pf at 60fps will take 1.6 seconds to dissapear.
+                                                        # 0.01pf at 60fps will take 1.6 seconds to disappear.
         else:                                           
             pyrend.close()    # Finish the program when the image has vanished
     
